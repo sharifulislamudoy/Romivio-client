@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // or use href if not using React Router
+import Lottie from "lottie-react";
+import { Link } from "react-router-dom";
+import error404Animation from "../assets/Lottie.json"; // 👈 Import your Lottie JSON file
 
 const errorVariant = {
   hidden: { opacity: 0, y: 50 },
@@ -20,7 +22,10 @@ const ErrorPage = () => {
         whileInView="visible"
         viewport={{ once: false, amount: 0.5 }}
       >
-        <h1 className="text-7xl font-bold text-error mb-4">404</h1>
+        {/* Lottie Animation */}
+        <div className="w-64 h-64 mx-auto mb-4">
+          <Lottie animationData={error404Animation} loop={true} />
+        </div>
         <h2 className="text-2xl font-semibold mb-2">Page Not Found</h2>
         <p className="text-sm text-gray-500 mb-6">
           Oops! The page you're looking for doesn't exist or has been moved.

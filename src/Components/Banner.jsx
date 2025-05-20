@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import BgImg from '../assets/Bg.png'
+import BgImg from '../assets/bannerImg.png'
 
 
 const slides = [
@@ -43,7 +43,7 @@ const Banner = () => {
             className="w-full min-h-screen relative overflow-hidden mt-20 bg-center bg-cover"
             style={{ backgroundImage: `url(${BgImg})` }}
         >
-             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/60"></div>
+             <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-black/40"></div>
             <div>
                 {slides.map((slide, index) => (
                 <div
