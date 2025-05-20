@@ -30,7 +30,7 @@ const itemVariant = {
 const HowItWorks = () => {
   return (
     <section className="py-20 px-4 bg-base-100 text-base-content">
-      <div className="w-11/12 mx-auto max-w-7xl">
+      <div className="w-11/12 mx-auto">
         <motion.h2
           className="text-3xl font-bold text-center mb-12"
           initial={{ opacity: 0, y: -30 }}

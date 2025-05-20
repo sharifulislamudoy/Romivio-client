@@ -7,6 +7,7 @@ import LoadingSpinner from '../Components/LoadingSpinner';
 import Testimonials from '../Components/Testimonials';
 import WhyChooseUs from '../Components/WhyChooseUs';
 import { useLocation } from 'react-router-dom';
+import IntroTypingSection from '../Components/IntroTypingSection';
 
 const Home = () => {
     const location = useLocation();
@@ -16,7 +17,7 @@ const Home = () => {
         setLoading(false);
         const timeOut = setTimeout(() => setLoading(false), 1000);
         return () => clearTimeout(timeOut);
-    },[location.pathname]);
+    }, [location.pathname]);
 
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
@@ -24,11 +25,12 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
+            <IntroTypingSection></IntroTypingSection>
             <FeaturedRoommates></FeaturedRoommates>
             <Testimonials></Testimonials>
             <WhyChooseUs></WhyChooseUs>
             <HowItWorks></HowItWorks>
-            
+
         </div>
     );
 };

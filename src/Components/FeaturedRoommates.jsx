@@ -36,15 +36,15 @@ const FeaturedRoommates = () => {
     return (
         <section className="py-16 px-4 bg-base-100 text-base-content">
             <div className="w-11/12 mx-auto">
-                <motion.h2
-                    className="text-3xl font-bold text-center mb-10"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.9 }}
-                    viewport={{ once: false, amount: 0.4 }}
-                >
-                    ✨ Featured Roommate Posts
-                </motion.h2>
+        <motion.h2
+          className="text-3xl font-bold text-center mb-12"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false }}
+        >
+           ✨ Featured Roommate Posts
+        </motion.h2>
 
                 <motion.div
                     className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"

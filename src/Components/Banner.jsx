@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import BgImg from '../assets/bannerImg.png'
+import IntroTypingSection from './IntroTypingSection';
 
 
 const slides = [
@@ -44,6 +45,7 @@ const Banner = () => {
             style={{ backgroundImage: `url(${BgImg})` }}
         >
              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-black/40"></div>
+
             <div>
                 {slides.map((slide, index) => (
                 <div
