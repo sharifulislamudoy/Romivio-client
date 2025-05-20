@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
-import BgImg from '../assets/bannerImg.png'
-import IntroTypingSection from './IntroTypingSection';
 
 
 const slides = [
@@ -41,10 +41,9 @@ const Banner = () => {
 
     return (
         <div
-            className="w-full min-h-screen relative overflow-hidden mt-20 bg-center bg-cover"
-            style={{ backgroundImage: `url(${BgImg})` }}
+            className="w-full h-55  relative overflow-hidden"
         >
-             <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-black/40"></div>
+             <div className="absolute inset-0 "></div>
 
             <div>
                 {slides.map((slide, index) => (
@@ -55,9 +54,9 @@ const Banner = () => {
                 >
                     <div className="absolute inset-0 bg-opacity-50 flex items-center justify-center text-center text-white px-6">
                         <div>
-                            <h2 className="text-4xl md:text-5xl font-bold mb-4">{slide.title}</h2>
-                            <p className="text-lg mb-6">{slide.desc}</p>
-                            <a href={slide.link} className="btn btn-primary">{slide.buttonText}</a>
+                            <h2 className="text-3xl font-bold  text-black"><p>{slide.title}</p></h2>
+                            <p className="text-lg">{slide.desc}</p>
+                            <NavLink to={slide.link} className="btn btn-primary">{slide.buttonText}</NavLink>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { auth, provider } from "../Provider/AuthProvider";
 import { signInWithPopup } from "firebase/auth";
+import { NavLink } from "react-router-dom";
 
 const formVariant = {
     hidden: { opacity: 0, y: 50 },
@@ -108,9 +109,9 @@ const SignupForm = () => {
 
                 <p className="mt-6 text-center text-sm">
                     Already have an account?{" "}
-                    <a href="/login" className="link link-primary">
+                    <NavLink to="/login" className="link link-primary">
                         Login here
-                    </a>
+                    </NavLink>
                 </p>
             </motion.div>
         </section>

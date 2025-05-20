@@ -8,6 +8,7 @@ import Testimonials from '../Components/Testimonials';
 import WhyChooseUs from '../Components/WhyChooseUs';
 import { useLocation } from 'react-router-dom';
 import IntroTypingSection from '../Components/IntroTypingSection';
+import CarouselBanner from '../Components/CarouselBanner';
 
 const Home = () => {
     const location = useLocation();
@@ -24,8 +25,11 @@ const Home = () => {
     }
     return (
         <div>
+            <div className='min-h-screen flex justify-center items-center flex-col gap-8'>
+                <IntroTypingSection></IntroTypingSection>
+                <CarouselBanner></CarouselBanner>
+            </div>
             <Banner></Banner>
-            <IntroTypingSection></IntroTypingSection>
             <FeaturedRoommates></FeaturedRoommates>
             <Testimonials></Testimonials>
             <WhyChooseUs></WhyChooseUs>

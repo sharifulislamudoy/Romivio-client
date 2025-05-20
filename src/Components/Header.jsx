@@ -1,43 +1,52 @@
-import React from 'react';
-import logoImg from '../assets/logo.jpg'
+import React, { useState } from 'react';
+import logoImg from '../assets/logo.jpg';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     const isScrolled = false;
-
-    // Toggle this manually to simulate authentication state
     const isLoggedIn = false;
 
-    // Simulated user object
     const user = {
         displayName: "John Doe",
         photoURL: "https://i.pravatar.cc/150?img=3",
     };
+
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
-        <div
-            className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-transparent backdrop-blur-2xl shadow-md' : 'bg-base-100'
-                }`}
-        >
+        <div className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-transparent backdrop-blur-2xl shadow-md' : 'bg-base-100'}`}>
             <div className="container mx-auto px-4 flex justify-between items-center">
                 {/* Logo */}
                 <div className='flex items-center'>
                     <img src={logoImg} alt="roomivio" className='h-10' />
-                    <a href="/" className="text-xl font-bold text-primary">Roomivio</a>
+                    <NavLink to={'/'} className="text-xl font-bold text-primary ml-2">Roomivio</NavLink>
                 </div>
 
-                {/* Nav Links */}
+                {/* Hamburger Button */}
+                <div className="md:hidden">
+                    <button tabIndex={0} role="button" onClick={() => setMenuOpen(!menuOpen)} className="btn btn-ghost btn-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Nav Links - Desktop */}
                 <ul className="menu menu-horizontal px-1 space-x-2 hidden md:flex">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/browse">Browse Listing</a></li>
-                    <li><a href="/add-roommate">Add to Find Roommate</a></li>
-                    <li><a href="/my-listings">My Listings</a></li>
+                    <li><NavLink to={"/"}>Home</NavLink></li>
+                    <li><NavLink to={"/browse"}>Browse Listing</NavLink></li>
+                    <li><NavLink to={"/add-roommate"}>Add to Find Roommate</NavLink></li>
+                    <li><NavLink to={"/my-listings"}>My Listings</NavLink></li>
                 </ul>
 
                 {/* Auth Buttons or User Info */}
-                <div className="flex items-center space-x-2">
+                <div className="hidden md:flex items-center space-x-2">
                     {!isLoggedIn ? (
                         <>
-                            <a href="/login" className="btn btn-outline btn-sm">Login</a>
-                            <a href="/signup" className="btn btn-primary btn-sm">Signup</a>
+                            <NavLink to="/login" className="btn btn-outline btn-sm">Login</NavLink>
+                            <NavLink to="/signup" className="btn btn-primary btn-sm">Signup</NavLink>
                         </>
                     ) : (
                         <div className="dropdown dropdown-end">
@@ -46,23 +55,109 @@ const Header = () => {
                                     <img src={user.photoURL} alt="User Avatar" />
                                 </div>
                             </label>
-                            <ul
-                                tabIndex={0}
-                                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
-                            >
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
                                 <li><span className="text-sm font-semibold">{user.displayName}</span></li>
-                                <li><a href="/logout">Log out</a></li>
+                                <li><NavLink to="/logout">Log out</NavLink></li>
                             </ul>
                         </div>
                     )}
                 </div>
             </div>
+
+            {/* Mobile Menu */}
+            <div className="relative lg:hidden">
+
+                {menuOpen && (
+                    <div className="absolute right-0 mt-5 w-48 bg-base-100 shadow-lg rounded-md z-50 transition-all duration-300 origin-top scale-y-100">
+                        <ul className="py-2">
+                            <li>
+                                <NavLink
+                                    to={'/'}
+                                    onClick={() => setMenuOpen(false)}
+                                    className="block px-4 py-2 hover:bg-base-200"
+                                >
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={'/browse'}
+                                   
+                                    onClick={() => setMenuOpen(false)}
+                                    className="block px-4 py-2 hover:bg-base-200"
+                                >
+                                    Browse Listing
+                                </NavLink>
+                            </li>
+                            <li>
+                                <a
+                                    href="/add-roommate"
+                                    onClick={() => setMenuOpen(false)}
+                                    className="block px-4 py-2 hover:bg-base-200"
+                                >
+                                    Add to Find Roommate
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/my-listings"
+                                    onClick={() => setMenuOpen(false)}
+                                    className="block px-4 py-2 hover:bg-base-200"
+                                >
+                                    My Listings
+                                </a>
+                            </li>
+
+                            {!isLoggedIn ? (
+                                <>
+                                    <li>
+                                        <a
+                                            href="/login"
+                                            onClick={() => setMenuOpen(false)}
+                                            className="block px-4 py-2 hover:bg-base-200"
+                                        >
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="/signup"
+                                            onClick={() => setMenuOpen(false)}
+                                            className="block px-4 py-2 hover:bg-base-200"
+                                        >
+                                            Signup
+                                        </a>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li>
+                                        <span className="block px-4 py-2 text-sm text-gray-500">
+                                            {user.displayName}
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="/logout"
+                                            onClick={() => setMenuOpen(false)}
+                                            className="block px-4 py-2 hover:bg-base-200"
+                                        >
+                                            Logout
+                                        </a>
+                                    </li>
+                                </>
+                            )}
+                        </ul>
+                    </div>
+                )}
+            </div>
+
+
         </div>
     );
 };
 
-
 export default Header;
+
 
 
 

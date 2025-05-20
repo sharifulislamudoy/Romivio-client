@@ -1,4 +1,5 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -15,10 +16,10 @@ const Footer = () => {
           <div>
             <h3 className="footer-title">Navigation</h3>
             <ul className="space-y-1">
-              <li><a href="/" className="link link-hover">Home</a></li>
-              <li><a href="/browse" className="link link-hover">Browse Listing</a></li>
-              <li><a href="/add-roommate" className="link link-hover">Add to Find Roommate</a></li>
-              <li><a href="/my-listings" className="link link-hover">My Listings</a></li>
+              <li><NavLink to={'/'} className="link link-hover">Home</NavLink></li>
+              <li><NavLink to={'/browse'} className="link link-hover">Browse Listing</NavLink></li>
+              <li><NavLink to={"/add-roommate"} className="link link-hover">Add to Find Roommate</NavLink></li>
+              <li><NavLink to={"/my-listings"} className="link link-hover">My Listings</NavLink></li>
             </ul>
           </div>
 
@@ -26,8 +27,8 @@ const Footer = () => {
           <div>
             <h3 className="footer-title">Account</h3>
             <ul className="space-y-1">
-              <li><a href="/login" className="link link-hover">Login</a></li>
-              <li><a href="/signup" className="link link-hover">Signup</a></li>
+              <li><NavLink to={"/login"} className="link link-hover">Login</NavLink></li>
+              <li><NavLink to={"/signup"} className="link link-hover">Signup</NavLink></li>
             </ul>
           </div>
 
@@ -35,10 +36,10 @@ const Footer = () => {
           <div>
             <h3 className="footer-title">Follow Us</h3>
             <div className="flex space-x-4 mt-2">
-              <a href="#" className="text-xl hover:text-blue-800"><i className="fab fa-facebook"></i></a>
-              <a href="#" className="text-xl hover:text-blue-500"><i className="fab fa-twitter"></i></a>
-              <a href="#" className="text-xl hover:text-orange-400"><i className="fab fa-instagram"></i></a>
-              <a href="#" className="text-xl hover:text-blue-950"><i className="fab fa-linkedin"></i></a>
+              <NavLink to={'/'} className="text-xl hover:text-blue-800"><i className="fab fa-facebook"></i></NavLink>
+              <NavLink to={'/'} className="text-xl hover:text-blue-500"><i className="fab fa-twitter"></i></NavLink>
+              <NavLink to={'/'} className="text-xl hover:text-orange-400"><i className="fab fa-instagram"></i></NavLink>
+              <NavLink to={'/'} className="text-xl hover:text-blue-950"><i className="fab fa-linkedin"></i></NavLink>
             </div>
           </div>
         </div>

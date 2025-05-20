@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
 
 const formVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -53,9 +54,9 @@ const LoginForm = () => {
               <input type="checkbox" className="checkbox checkbox-sm mr-2" />
               Remember me
             </label>
-            <a href="#" className="link link-hover text-primary">
+            <NavLink to="#" className="link link-hover text-primary">
               Forgot password?
-            </a>
+            </NavLink>
           </div>
 
           <button type="submit" className="btn btn-primary w-full">
@@ -65,9 +66,9 @@ const LoginForm = () => {
 
         <p className="mt-6 text-center text-sm">
           Don’t have an account?{" "}
-          <a href="/signup" className="link link-primary">
+          <NavLink to="/signup" className="link link-primary">
             Sign up
-          </a>
+          </NavLink>
         </p>
       </motion.div>
     </section>

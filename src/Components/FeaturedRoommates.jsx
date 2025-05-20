@@ -70,9 +70,9 @@ const FeaturedRoommates = () => {
                                 <p className="text-sm text-gray-500">{roommate.location}</p>
                                 <p className="mt-2">{roommate.bio}</p>
                                 <div className="card-actions justify-end mt-4">
-                                    <a href={`/roommates/${roommate._id}`} className="btn btn-primary btn-sm">
+                                    <NavLink to={`/roommates/${roommate._id}`} className="btn btn-primary btn-sm">
                                         View Profile
-                                    </a>
+                                    </NavLink>
                                 </div>
                             </div>
                         </motion.div>
