@@ -15,7 +15,7 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(false);
+        setLoading(true);
         const timeOut = setTimeout(() => setLoading(false), 1000);
         return () => clearTimeout(timeOut);
     }, [location.pathname]);

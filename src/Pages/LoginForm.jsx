@@ -17,7 +17,7 @@ const LoginForm = () => {
         className="max-w-md mx-auto bg-base-200 p-8 rounded-2xl shadow-lg"
         variants={formVariant}
         initial="hidden"
-        whileInView="visible"
+        animate="visible"
         viewport={{ once: false, amount: 0.5 }}
       >
         <h2 className="text-3xl font-bold text-center mb-8">🔐 Login to Roomivio</h2>

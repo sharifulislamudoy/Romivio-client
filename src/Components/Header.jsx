@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import logoImg from '../assets/logo.jpg';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import '../Components/Header.css'
 
 const Header = () => {
     const isScrolled = false;
@@ -11,43 +11,51 @@ const Header = () => {
         photoURL: "https://i.pravatar.cc/150?img=3",
     };
 
-    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <div className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-transparent backdrop-blur-2xl shadow-md' : 'bg-base-100'}`}>
             <div className="container mx-auto px-4 flex justify-between items-center">
-                {/* Logo */}
-                <div className='flex items-center'>
-                    <img src={logoImg} alt="roomivio" className='h-10' />
-                    <NavLink to={'/'} className="text-xl font-bold text-primary ml-2">Roomivio</NavLink>
+                <div className="navbar-start">
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                        </div>
+                        <ul
+                            tabIndex={0}
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            <li><NavLink className="text-lg font-semibold" to={"/"}>Home</NavLink></li>
+                            <li><NavLink className="text-lg font-semibold" to={"/browse"}>Browse Listing</NavLink></li>
+                            <li><NavLink className="text-lg font-semibold" to={"/add-roommate"}>Add to Find Roommate</NavLink></li>
+                            <li><NavLink className="text-lg font-semibold" to={"/my-listings"}>My Listings</NavLink></li>
+                        </ul>
+                    </div>
+                    <div className='flex items-center gap-1'>
+                        <img src={logoImg} className='h-8' alt="" />
+                        <p className='text-3xl font-bold text-primary'>Roomivio</p>
+                    </div>
                 </div>
 
-                {/* Hamburger Button */}
-                <div className="md:hidden">
-                    <button tabIndex={0} role="button" onClick={() => setMenuOpen(!menuOpen)} className="btn btn-ghost btn-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+
+
 
                 {/* Nav Links - Desktop */}
-                <ul className="menu menu-horizontal px-1 space-x-2 hidden md:flex">
-                    <li><NavLink to={"/"}>Home</NavLink></li>
-                    <li><NavLink to={"/browse"}>Browse Listing</NavLink></li>
-                    <li><NavLink to={"/add-roommate"}>Add to Find Roommate</NavLink></li>
-                    <li><NavLink to={"/my-listings"}>My Listings</NavLink></li>
-                </ul>
+                <div className='navbar'>
+                    <ul className="menu menu-horizontal px-1 space-x-2 hidden lg:flex">
+                        <li><NavLink to={"/"}>Home</NavLink></li>
+                        <li><NavLink to={"/browse"}>Browse Listing</NavLink></li>
+                        <li><NavLink to={"/add-roommate"}>Add to Find Roommate</NavLink></li>
+                        <li><NavLink to={"/my-listings"}>My Listings</NavLink></li>
+                    </ul>
+                </div>
 
                 {/* Auth Buttons or User Info */}
-                <div className="hidden md:flex items-center space-x-2">
+                <div className=" items-center space-x-2">
                     {!isLoggedIn ? (
-                        <>
-                            <NavLink to="/login" className="btn btn-outline btn-sm">Login</NavLink>
-                            <NavLink to="/signup" className="btn btn-primary btn-sm">Signup</NavLink>
-                        </>
+                        <div className='flex gap-3'>
+                            <Link to="/login" className="btn btn-outline btn-sm">Login</Link>
+                            <Link to="/signup" className="btn text-white btn-primary btn-sm">Signup</Link>
+                        </div>
+
                     ) : (
                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom" data-tip={user.displayName}>
@@ -64,92 +72,6 @@ const Header = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
-            <div className="relative lg:hidden">
-
-                {menuOpen && (
-                    <div className="absolute right-0 mt-5 w-48 bg-base-100 shadow-lg rounded-md z-50 transition-all duration-300 origin-top scale-y-100">
-                        <ul className="py-2">
-                            <li>
-                                <NavLink
-                                    to={'/'}
-                                    onClick={() => setMenuOpen(false)}
-                                    className="block px-4 py-2 hover:bg-base-200"
-                                >
-                                    Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={'/browse'}
-                                   
-                                    onClick={() => setMenuOpen(false)}
-                                    className="block px-4 py-2 hover:bg-base-200"
-                                >
-                                    Browse Listing
-                                </NavLink>
-                            </li>
-                            <li>
-                                <a
-                                    href="/add-roommate"
-                                    onClick={() => setMenuOpen(false)}
-                                    className="block px-4 py-2 hover:bg-base-200"
-                                >
-                                    Add to Find Roommate
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="/my-listings"
-                                    onClick={() => setMenuOpen(false)}
-                                    className="block px-4 py-2 hover:bg-base-200"
-                                >
-                                    My Listings
-                                </a>
-                            </li>
-
-                            {!isLoggedIn ? (
-                                <>
-                                    <li>
-                                        <a
-                                            href="/login"
-                                            onClick={() => setMenuOpen(false)}
-                                            className="block px-4 py-2 hover:bg-base-200"
-                                        >
-                                            Login
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="/signup"
-                                            onClick={() => setMenuOpen(false)}
-                                            className="block px-4 py-2 hover:bg-base-200"
-                                        >
-                                            Signup
-                                        </a>
-                                    </li>
-                                </>
-                            ) : (
-                                <>
-                                    <li>
-                                        <span className="block px-4 py-2 text-sm text-gray-500">
-                                            {user.displayName}
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="/logout"
-                                            onClick={() => setMenuOpen(false)}
-                                            className="block px-4 py-2 hover:bg-base-200"
-                                        >
-                                            Logout
-                                        </a>
-                                    </li>
-                                </>
-                            )}
-                        </ul>
-                    </div>
-                )}
-            </div>
 
 
         </div>
