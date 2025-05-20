@@ -14,7 +14,7 @@ const Header = () => {
     };
     return (
         <div
-            className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-transparent backdrop-blur-md shadow-md' : 'bg-base-100'
+            className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-transparent backdrop-blur-2xl shadow-md' : 'bg-base-100'
                 }`}
         >
             <div className="container mx-auto px-4 flex justify-between items-center">
@@ -28,8 +28,8 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1 space-x-2 hidden md:flex">
                     <li><a href="/">Home</a></li>
                     <li><a href="/browse">Browse Listing</a></li>
-                    {isLoggedIn && <li><a href="/add-roommate">Add to Find Roommate</a></li>}
-                    {isLoggedIn && <li><a href="/my-listings">My Listings</a></li>}
+                    <li><a href="/add-roommate">Add to Find Roommate</a></li>
+                    <li><a href="/my-listings">My Listings</a></li>
                 </ul>
 
                 {/* Auth Buttons or User Info */}

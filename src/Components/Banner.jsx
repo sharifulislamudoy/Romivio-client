@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import BgImg from '../assets/BackGround.png'
+import BgImg from '../assets/Bg.png'
 
 
 const slides = [
@@ -10,7 +10,6 @@ const slides = [
         desc: "Roomivio helps you connect with people who match your lifestyle, budget, and vibe.",
         buttonText: "Browse Listings",
         link: "/browse",
-        img: "https://i.ibb.co/k2cnzHdk/Roomivio.png",
     },
     {
         id: 2,
@@ -18,7 +17,6 @@ const slides = [
         desc: "Looking for a roommate? Add your listing and let others find you!",
         buttonText: "Add Listing",
         link: "/add-roommate",
-        img: "https://i.ibb.co/k2cnzHdk/Roomivio.png",
     },
     {
         id: 3,
@@ -26,7 +24,6 @@ const slides = [
         desc: "We prioritize your safety with verified user accounts and transparent listings.",
         buttonText: "Join Roomivio",
         link: "/signup",
-        img: "https://i.ibb.co/k2cnzHdk/Roomivio.png",
     },
 ];
 

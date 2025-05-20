@@ -35,10 +35,10 @@ const Footer = () => {
           <div>
             <h3 className="footer-title">Follow Us</h3>
             <div className="flex space-x-4 mt-2">
-              <a href="#" className="text-xl hover:text-primary"><i className="fab fa-facebook"></i></a>
-              <a href="#" className="text-xl hover:text-primary"><i className="fab fa-twitter"></i></a>
-              <a href="#" className="text-xl hover:text-primary"><i className="fab fa-instagram"></i></a>
-              <a href="#" className="text-xl hover:text-primary"><i className="fab fa-linkedin"></i></a>
+              <a href="#" className="text-xl hover:text-blue-800"><i className="fab fa-facebook"></i></a>
+              <a href="#" className="text-xl hover:text-blue-500"><i className="fab fa-twitter"></i></a>
+              <a href="#" className="text-xl hover:text-orange-400"><i className="fab fa-instagram"></i></a>
+              <a href="#" className="text-xl hover:text-blue-950"><i className="fab fa-linkedin"></i></a>
             </div>
           </div>
         </div>
