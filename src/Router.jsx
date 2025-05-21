@@ -8,6 +8,7 @@ import LoginForm from "./Pages/LoginForm";
 import SignupForm from "./Pages/SignupForm";
 import BrowseListing from "./Pages/BrowseListing";
 import AddRoommateForm from "./Pages/AddRoommateForm";
+import MyListings from "./Pages/MyListings";
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ export const router = createBrowserRouter([
       {
         path: '/add-roommate',
         Component: AddRoommateForm,
-      }
+      },
+      {
+        path: '/my-listings',
+        Component: MyListings,
+      },
     ]
   },
 ]);
