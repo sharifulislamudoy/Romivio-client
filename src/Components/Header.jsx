@@ -30,8 +30,8 @@ const Header = () => {
                         </ul>
                     </div>
                     <div className='flex items-center gap-1'>
-                        <img src={logoImg} className='h-8 w-auto' alt="" />
-                        <p className='hidden lg:flex text-3xl font-bold text-primary'>Roomivio</p>
+                        <img src={logoImg} className='h-8 w-auto hidden lg:flex' alt="" />
+                        <p className='lg:text-3xl text-xl font-bold text-primary'>Roomivio</p>
                     </div>
                 </div>
 

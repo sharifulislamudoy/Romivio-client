@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
-import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const MyListings = ({ onUpdate }) => {
+const MyListings = () => {
 
-  const listings = useLoaderData();
-  // console.log(listings)
+  const initialListings = useLoaderData();
+  const [listings , setListings] = useState(initialListings)
 
   const handleDelete = (_id) => {
 
-    // console.log(_id);
 
     Swal.fire({
       title: "Are you sure?",
@@ -33,16 +33,11 @@ const MyListings = ({ onUpdate }) => {
                 text: "Your post has been deleted.",
                 icon: "success"
               });
+
+              const remainingListings = listings.filter(list => list._id !== _id);
+              setListings(remainingListings)
             }
           })
-
-
-
-
-
-
-
-
       }
     });
 
@@ -87,12 +82,14 @@ const MyListings = ({ onUpdate }) => {
                       </span>
                     </td>
                     <td className="text-center space-x-2">
-                      <button
-                        onClick={() => onUpdate(listing)}
-                        className="btn btn-sm btn-info"
-                      >
-                        Update
-                      </button>
+                      <Link to={`/update-roommate/${listing._id}`}>
+                        <button
+                          className="btn btn-sm btn-info"
+                        >
+                          Update
+                        </button>
+                      </Link>
+
                       <button
                         onClick={() => handleDelete(listing._id)}
                         className="btn btn-sm btn-error"

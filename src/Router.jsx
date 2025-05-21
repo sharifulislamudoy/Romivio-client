@@ -20,11 +20,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        path:'/',
+        path: '/',
         Component: Home,
       },
       {
-        path:'/login',
+        path: '/login',
         Component: LoginForm,
       },
       {
@@ -46,11 +46,12 @@ export const router = createBrowserRouter([
         Component: MyListings,
       },
       {
-        path: '/update-roommate',
+        path: '/update-roommate/:id',
+        loader: ({ params }) => fetch(`http://localhost:3000/listings/${params.id}`),
         Component: UpdateRoommateForm
       },
       {
-        path:'/listings/:id',
+        path: '/listings/:id',
         loader: () => fetch('http://localhost:3000/listings'),
         Component: ListingDetails,
       },
