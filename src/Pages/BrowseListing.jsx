@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const BrowseListings = () => {
@@ -58,12 +58,13 @@ const BrowseListings = () => {
                       </span>
                     </td>
                     <td className="text-center">
-                      <button
-                        onClick={() => navigate(`/listing/${post._id}`)}
-                        className="btn btn-sm btn-primary"
+                      <Link
+                      to={`/listings/${post._id}`}
+                      className="btn btn-sm btn-primary"
                       >
-                        See More
-                      </button>
+                      See More
+                      </Link>
+  
                     </td>
                   </tr>
                 ))

@@ -10,6 +10,7 @@ import BrowseListing from "./Pages/BrowseListing";
 import AddRoommateForm from "./Pages/AddRoommateForm";
 import MyListings from "./Pages/MyListings";
 import UpdateRoommateForm from "./Pages/UpdateRoommateForm";
+import ListingDetails from "./Components/ListingDetails";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/browse',
-        loader: () => fetch('http://localhost:3000/add-listing'),
+        loader: () => fetch('http://localhost:3000/listings'),
         Component: BrowseListing,
       },
       {
@@ -41,13 +42,18 @@ export const router = createBrowserRouter([
       },
       {
         path: '/my-listings',
-        loader: () => fetch('http://localhost:3000/add-listing'),
+        loader: () => fetch('http://localhost:3000/listings'),
         Component: MyListings,
       },
       {
         path: '/update-roommate',
         Component: UpdateRoommateForm
-      }
+      },
+      {
+        path:'/listings/:id',
+        loader: () => fetch('http://localhost:3000/listings'),
+        Component: ListingDetails,
+      },
     ]
   },
 ]);

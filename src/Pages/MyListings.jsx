@@ -22,7 +22,7 @@ const MyListings = ({ onUpdate }) => {
     }).then((result) => {
       console.log(result.isConfirmed)
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/add-listing/${_id}`, {
+        fetch(`http://localhost:3000/listings/${_id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())

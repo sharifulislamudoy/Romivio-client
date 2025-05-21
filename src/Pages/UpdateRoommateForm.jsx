@@ -15,7 +15,7 @@ const UpdateRoommateForm = () => {
 
     // Send data to the Server
 
-    fetch('http://localhost:3000/add-listing', {
+    fetch('http://localhost:3000/listings', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
