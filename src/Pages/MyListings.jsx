@@ -1,6 +1,52 @@
 import { motion } from "framer-motion";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const MyListings = ({ listings, onDelete, onUpdate }) => {
+const MyListings = ({ onUpdate }) => {
+
+  const listings = useLoaderData();
+  // console.log(listings)
+
+  const handleDelete = (_id) => {
+
+    // console.log(_id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      console.log(result.isConfirmed)
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/add-listing/${_id}`, {
+          method: 'DELETE'
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your post has been deleted.",
+                icon: "success"
+              });
+            }
+          })
+
+
+
+
+
+
+
+
+      }
+    });
+
+  }
   return (
     <section className="py-16 px-4 bg-base-100 text-base-content mt-10">
       <motion.div
@@ -32,11 +78,10 @@ const MyListings = ({ listings, onDelete, onUpdate }) => {
                     <td>৳{listing.rent}</td>
                     <td>
                       <span
-                        className={`badge ${
-                          listing.availability === "available"
-                            ? "badge-success"
-                            : "badge-error"
-                        }`}
+                        className={`badge ${listing.availability === "available"
+                          ? "badge-success"
+                          : "badge-error"
+                          }`}
                       >
                         {listing.availability}
                       </span>
@@ -49,7 +94,7 @@ const MyListings = ({ listings, onDelete, onUpdate }) => {
                         Update
                       </button>
                       <button
-                        onClick={() => onDelete(listing._id)}
+                        onClick={() => handleDelete(listing._id)}
                         className="btn btn-sm btn-error"
                       >
                         Delete

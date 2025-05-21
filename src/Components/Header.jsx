@@ -23,15 +23,15 @@ const Header = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            <li><NavLink className="text-lg font-semibold" to={"/"}>Home</NavLink></li>
-                            <li><NavLink className="text-lg font-semibold" to={"/browse"}>Browse Listing</NavLink></li>
-                            <li><NavLink className="text-lg font-semibold" to={"/add-roommate"}>Add to Find Roommate</NavLink></li>
-                            <li><NavLink className="text-lg font-semibold" to={"/my-listings"}>My Listings</NavLink></li>
+                            <li><NavLink className="text-md " to={"/"}>Home</NavLink></li>
+                            <li><NavLink className="text-md " to={"/browse"}>Browse Listing</NavLink></li>
+                            <li><NavLink className="text-md " to={"/add-roommate"}>Add to Find Roommate</NavLink></li>
+                            <li><NavLink className="text-md " to={"/my-listings"}>My Listings</NavLink></li>
                         </ul>
                     </div>
                     <div className='flex items-center gap-1'>
-                        <img src={logoImg} className='h-8' alt="" />
-                        <p className='text-3xl font-bold text-primary'>Roomivio</p>
+                        <img src={logoImg} className='h-8 w-auto' alt="" />
+                        <p className='hidden lg:flex text-3xl font-bold text-primary'>Roomivio</p>
                     </div>
                 </div>
 

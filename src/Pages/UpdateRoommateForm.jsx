@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AddRoommateForm = () => {
+const UpdateRoommateForm = () => {
 
   const navigate = useNavigate();
 
@@ -72,7 +72,7 @@ const AddRoommateForm = () => {
         transition={{ duration: 0.7, ease: "easeOut" }}
         viewport={{ once: false, amount: 0.3 }}
       >
-        <h2 className="text-3xl font-bold mb-8 text-center">📢 Add Roommate Listing</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">🔄 Update Roommate Listing</h2>
 
         <form onSubmit={handleAddListing} className="grid gap-6">
           <div className="grid sm:grid-cols-2 gap-4 mt-6">
@@ -203,11 +203,11 @@ const AddRoommateForm = () => {
             </div>
           </div>
 
-          <input type="submit" value="Add Listing" className="mt-5 text-center btn btn-primary w-full sm:w-auto" />
+          <input type="submit" value="Update Listing" className="mt-5 text-center btn btn-primary w-full sm:w-auto" />
         </form>
       </motion.div>
     </section>
   );
 };
 
-export default AddRoommateForm;
+export default UpdateRoommateForm;
