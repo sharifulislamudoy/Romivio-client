@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import LoginForm from "./Pages/LoginForm";
 import SignupForm from "./Pages/SignupForm";
 import BrowseListing from "./Pages/BrowseListing";
+import AddRoommateForm from "./Pages/AddRoommateForm";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: '/browse',
         Component: BrowseListing,
+      },
+      {
+        path: '/add-roommate',
+        Component: AddRoommateForm,
       }
     ]
   },
