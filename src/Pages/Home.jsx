@@ -29,11 +29,11 @@ const Home = () => {
                 <IntroTypingSection></IntroTypingSection>
                 <CarouselBanner></CarouselBanner>
             </div>
-            <Banner></Banner>
             <FeaturedRoommates></FeaturedRoommates>
             <Testimonials></Testimonials>
             <WhyChooseUs></WhyChooseUs>
             <HowItWorks></HowItWorks>
+            <Banner></Banner>
 
         </div>
     );
