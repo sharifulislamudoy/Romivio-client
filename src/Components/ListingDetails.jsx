@@ -3,14 +3,27 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 const ListingDetails = () => {
-    const listing = useLoaderData(); // Now directly using the single listing object
-    const [likeCount, setLikeCount] = useState(0);
+    const listing = useLoaderData();
+    const [likeCount, setLikeCount] = useState(listing.likeCount || 0);
     const [liked, setLiked] = useState(false);
 
-    const handleLike = () => {
+    const handleLike = async () => {
+        window.location.reload()
         if (!liked) {
-            setLikeCount(prev => prev + 1);
-            setLiked(true);
+            try {
+                const res = await fetch(`http://localhost:3000/listings/${listing._id}/like`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                });
+                if (!res.ok) {
+                    throw new Error("Failed to update like count");
+                }
+                const updated = await res.json();
+                setLikeCount(updated.likeCount);
+                setLiked(true);
+            } catch (err) {
+                console.error("Like update failed:", err);
+            }
         }
     };
 
@@ -61,7 +74,8 @@ const ListingDetails = () => {
                 <div className="mt-6 flex justify-center items-center flex-col gap-4 ">
                     <button
                         onClick={handleLike}
-                        className={`btn btn-outline btn-primary ${liked ? 'btn-disabled' : ''}`}
+                        className="btn btn-outline btn-primary"
+                        disabled={liked}
                     >
                         ❤️ {liked ? "Liked" : "Like"}
                     </button>
