@@ -6,20 +6,13 @@ const ListingDetails = () => {
     const lists = useLoaderData();
     const { id } = useParams();
 
-
-
-     
     const [listing, setListing] = useState({});
-    console.log(lists, id, listing)
+    const [likeCount, setLikeCount] = useState(0);
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
-
         const listDetails = lists.find(singleDetails => singleDetails._id == id);
-        setListing(listDetails)
-        // fetch(`https://your-backend-api.com/api/listings/${id}`)
-        //     .then((res) => res.json())
-        //     .then((data) => setListing(data))
-        //     .catch((err) => console.error("Failed to fetch listing:", err));
+        setListing(listDetails);
     }, [id, lists]);
 
     if (!listing) {
@@ -30,6 +23,13 @@ const ListingDetails = () => {
         );
     }
 
+    const handleLike = () => {
+        if (!liked) {
+            setLikeCount(prev => prev + 1);
+            setLiked(true);
+        }
+    };
+
     return (
         <motion.section
             className="py-16 px-4 bg-base-100 text-base-content mt-25 min-h-screen"
@@ -39,9 +39,12 @@ const ListingDetails = () => {
             viewport={{ once: false, amount: 0.3 }}
         >
             <div className="max-w-3xl mx-auto bg-base-200 p-8 rounded-lg shadow-md">
-                <h2 className="text-3xl font-bold text-center mb-6">
+                <h2 className="text-3xl font-bold text-center mb-2">
                     📝 Roommate Listing Details
                 </h2>
+                <p className="text-center text-lg font-semibold mb-6 text-primary">
+                    {likeCount} {likeCount === 1 ? "person" : "people"} interested in
+                </p>
 
                 <div className="space-y-4 text-sm sm:text-base grid grid-cols-1 md:grid-cols-2">
                     <p><strong>📧 User Email:</strong> {listing.userEmail}</p>
@@ -52,21 +55,34 @@ const ListingDetails = () => {
                     <p><strong>🛏 Room Type:</strong> {listing.roomType}</p>
                     <p><strong>🧬 Lifestyle Preferences:</strong> {listing.preferences}</p>
                     <p><strong>📝 Description:</strong> {listing.description}</p>
-                    <p><strong>📞 Contact Info:</strong> {listing.contactInfo}</p>
                     <p>
                         <strong>📆 Availability:</strong>{" "}
-                        <span
-                            className={`badge ${listing.availability === "available"
-                                    ? "badge-success"
-                                    : "badge-error"
-                                }`}
-                        >
+                        <span className={`badge ${listing.availability === "available"
+                            ? "badge-success"
+                            : "badge-error"
+                            }`}>
                             {listing.availability}
                         </span>
                     </p>
                 </div>
-                <div className="text-center">
-                    <Link className="btn btn-sm btn-primary mt-4" to={'/'}>Go to Home</Link>
+
+                <div className="mt-6 flex justify-center items-center flex-col gap-4 ">
+                    <button
+                        onClick={handleLike}
+                        className={`btn btn-outline btn-primary ${liked ? 'btn-disabled' : ''}`}
+                    >
+                        ❤️ {liked ? "Liked" : "Like"}
+                    </button>
+
+                    {liked && (
+                        <p className="mt-4 text-base text-success">
+                            📞 Contact Info: {listing.contactInfo}
+                        </p>
+                    )}
+
+                    <Link className="btn btn-sm btn-secondary" to={"/"}>
+                        Go to Home
+                    </Link>
                 </div>
             </div>
         </motion.section>

@@ -2,11 +2,14 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const MyListings = () => {
 
   const initialListings = useLoaderData();
   const [listings , setListings] = useState(initialListings)
+
+  if(!listings.length) return <LoadingSpinner></LoadingSpinner>
 
   const handleDelete = (_id) => {
 
@@ -42,6 +45,8 @@ const MyListings = () => {
     });
 
   }
+
+  
   return (
     <section className="py-16 px-4 bg-base-100 text-base-content mt-10">
       <motion.div

@@ -21,6 +21,16 @@ const UpdateRoommateForm = () => {
             return;
         }
 
+        // Check if any field has changed
+        const isChanged = Object.keys(updateData).some(key => {
+            return updateData[key] !== String(data[key]);
+        });
+
+        if (!isChanged) {
+            Swal.fire("No changes detected!", "Please update at least one field before submitting.", "info");
+            return;
+        }
+
         Swal.fire({
             title: "Do you want to save the changes?",
             showDenyButton: true,
@@ -29,7 +39,7 @@ const UpdateRoommateForm = () => {
             denyButtonText: `Don't save`
         }).then((result) => {
             if (result.isConfirmed) {
-                navigate('/my-listings')
+                navigate('/my-listings');
                 fetch(`http://localhost:3000/listings/${_id}`, {
                     method: 'PUT',
                     headers: {
@@ -53,8 +63,7 @@ const UpdateRoommateForm = () => {
                 Swal.fire("Changes are not saved", "", "info");
             }
         });
-    }
-
+    };
 
     return (
         <section className="py-16 px-4 bg-base-100 text-base-content">
