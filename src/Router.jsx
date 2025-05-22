@@ -56,7 +56,13 @@ export const router = createBrowserRouter([
       },
       {
         path: '/listings/:id',
-        loader: ({params}) => fetch(`http://localhost:3000/listings/${params._id}`),
+        loader: async ({ params }) => {
+          const res = await fetch(`http://localhost:3000/listings/${params.id}`);
+          if (!res.ok) {
+            throw new Error("Failed to fetch listing");
+          }
+          return res.json();
+        },
         hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
         Component: ListingDetails,
       },

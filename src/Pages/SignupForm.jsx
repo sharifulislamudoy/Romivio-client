@@ -27,7 +27,9 @@ const SignupForm = () => {
         const form = e.target;
         const formData = new FormData(form);
 
-        const { email, password, ...userProfile } = Object.fromEntries(formData.entries());
+        const { email, password, ...restFormdata } = Object.fromEntries(formData.entries());
+
+
 
         console.log(email, password, userProfile);
 
@@ -35,6 +37,11 @@ const SignupForm = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
+
+                const userProfile = {
+                    email,
+                    ...rest,
+                }
 
                 fetch('http://localhost:3000/users', {
                     method: 'POST',

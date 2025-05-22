@@ -1,27 +1,11 @@
-import { Link, useLoaderData, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const ListingDetails = () => {
-    const lists = useLoaderData();
-    const { id } = useParams();
-
-    const [listing, setListing] = useState({});
+    const listing = useLoaderData(); // Now directly using the single listing object
     const [likeCount, setLikeCount] = useState(0);
     const [liked, setLiked] = useState(false);
-
-    useEffect(() => {
-        const listDetails = lists.find(singleDetails => singleDetails._id == id);
-        setListing(listDetails);
-    }, [id, lists]);
-
-    if (!listing) {
-        return (
-            <div className="flex justify-center items-center h-[70vh] text-xl font-semibold">
-                Loading...
-            </div>
-        );
-    }
 
     const handleLike = () => {
         if (!liked) {
@@ -29,6 +13,14 @@ const ListingDetails = () => {
             setLiked(true);
         }
     };
+
+    if (!listing || !listing._id) {
+        return (
+            <div className="flex justify-center items-center h-[70vh] text-xl font-semibold">
+                Loading...
+            </div>
+        );
+    }
 
     return (
         <motion.section
