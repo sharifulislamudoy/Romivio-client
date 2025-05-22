@@ -3,7 +3,9 @@ import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup } from "firebase/auth";
 import { auth, AuthContext, provider } from "../Provider/AuthProvider";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import Swal from "sweetalert2";
+import { Eye, EyeOff } from "lucide-react";
 
 const formVariant = {
     hidden: { opacity: 0, y: 2 },
@@ -16,23 +18,47 @@ const formVariant = {
 
 const SignupForm = () => {
 
+    const [showPassword, setShowPassword] = useState(false);
+
     const { createUser } = useContext(AuthContext);
 
     const handleSignUp = e => {
-        const form = e.target
         e.preventDefault();
+        const form = e.target;
         const formData = new FormData(form);
-        const email = formData.get('email');
-        const password = formData.get('password');
+
+        const { email, password, ...userProfile } = Object.fromEntries(formData.entries());
+
+        console.log(email, password, userProfile);
+
 
         createUser(email, password)
-        .then(result => {
-            console.log(result.user)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-    }
+            .then(result => {
+                console.log(result.user);
+
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userProfile)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: "Account Created Successfully",
+                                icon: "success",
+                                draggable: true,
+                                timer: 3000
+                            });
+                        }
+                    })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    };
 
 
 
@@ -92,10 +118,32 @@ const SignupForm = () => {
                         <input type="url" name="photo" className="input input-bordered w-full" placeholder="https://example.com/photo.jpg" required />
                     </div>
 
+                    {/* Contact */}
+                    <div className="mt-4">
+                        <label htmlFor="contact" className="block text-sm font-medium mb-1">Contact Number</label>
+                        <input type="tel" name="contact" className="input input-bordered w-full" placeholder="e.g. 01712345678" pattern="[0-9]{11}" required />
+                    </div>
+
                     {/* Password */}
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium mb-1">Password</label>
-                        <input type="password" name="password" className="input input-bordered w-full" placeholder="••••••••" required />
+                    <div className="relative">
+                        <label htmlFor="password" className="block text-sm font-medium mb-1">
+                            Password
+                        </label>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            className="input input-bordered w-full pr-10"
+                            placeholder="••••••••"
+                            pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                            required
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-9 text-gray-500"
+                        >
+                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                        </button>
                         <ul className="text-xs mt-1 text-gray-500 list-disc list-inside">
                             <li>Must contain at least 1 uppercase letter</li>
                             <li>Must contain at least 1 lowercase letter</li>

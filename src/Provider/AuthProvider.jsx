@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider } from "fir
 export const auth = getAuth(app)
 export const provider = new GoogleAuthProvider();
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
 
