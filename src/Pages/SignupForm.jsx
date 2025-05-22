@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup } from "firebase/auth";
 import { auth, AuthContext, provider } from "../Provider/AuthProvider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { Eye, EyeOff } from "lucide-react";
@@ -17,21 +17,23 @@ const formVariant = {
 };
 
 const SignupForm = () => {
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
 
     const { createUser } = useContext(AuthContext);
 
     const handleSignUp = e => {
+
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
 
-        const { email, password, ...restFormdata } = Object.fromEntries(formData.entries());
+        const { email, password, ...restFormData } = Object.fromEntries(formData.entries());
 
 
 
-        console.log(email, password, userProfile);
+        console.log(email, password, restFormData);
 
 
         createUser(email, password)
@@ -40,7 +42,7 @@ const SignupForm = () => {
 
                 const userProfile = {
                     email,
-                    ...rest,
+                    ...restFormData,
                 }
 
                 fetch('http://localhost:3000/users', {
@@ -65,6 +67,7 @@ const SignupForm = () => {
             .catch(error => {
                 console.log(error)
             })
+            navigate('/add-roommate')
     };
 
 
