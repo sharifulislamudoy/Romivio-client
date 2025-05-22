@@ -53,7 +53,9 @@ export const router = createBrowserRouter([
         path: '/update-roommate/:id',
         loader: ({ params }) => fetch(`http://localhost:3000/listings/${params.id}`),
         hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
-        Component: UpdateRoommateForm
+        element: <PrivateRoute>
+          <UpdateRoommateForm></UpdateRoommateForm>
+        </PrivateRoute>
       },
       {
         path: '/listings/:id',

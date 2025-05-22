@@ -11,9 +11,7 @@ const ListingDetails = () => {
     const [liked, setLiked] = useState(false);
 
     const handleLike = async () => {
-        console.log(user.phoneNumber); // should print the phone number
 
-        window.location.reload()
         if (!liked) {
             try {
                 const res = await fetch(`http://localhost:3000/listings/${listing._id}/like`, {
@@ -87,7 +85,7 @@ const ListingDetails = () => {
 
                     {liked && (
                         <p className="mt-4 text-base text-success">
-                            📞 Contact Info: {user.metaData.phoneNumber || "No phone number available"}
+                            📞 Contact Info: {listing.contact || "No phone number available"}
                         </p>
                     )}
 

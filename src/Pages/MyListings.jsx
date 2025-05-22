@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../Components/LoadingSpinner";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -19,7 +19,7 @@ const MyListings = () => {
 
 
   const filteredListings = listings.filter(listing => listing.email === email);
-  
+
   if (!listings.length) return <LoadingSpinner></LoadingSpinner>
 
   const handleDelete = (_id) => {

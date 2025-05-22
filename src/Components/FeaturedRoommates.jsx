@@ -8,12 +8,11 @@ const FeaturedPosts = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:3000/listings")
+        fetch("http://localhost:3000/listings?limit=8")
             .then((res) => res.json())
             .then((data) => {
                 const availablePosts = data
                     .filter((post) => post.availability === "available")
-                    .slice(0, 6); // Limit to 6 posts
                 setPosts(availablePosts);
             })
             .catch((err) => console.error("Error fetching featured posts:", err));
