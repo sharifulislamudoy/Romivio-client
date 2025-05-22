@@ -7,19 +7,20 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const MyListings = () => {
 
-  const { user , loading} = useContext(AuthContext);
-
-  const [mylistings , setMyListings] = useState([]);
+  const { user } = useContext(AuthContext);
+  const email = user.email;
+  const [listings, setListings] = useState([]);
 
   useEffect(() => {
-    if(user?.email) {
-      fetch(`http://localhost:3000/listings?email=${user.email}`)
+    fetch('http://localhost:3000/listings')
       .then(res => res.json())
-      .then(data => setMyListings(data));
-    }
-  },[user?.email])
+      .then(data => setListings(data));
+  }, []);
 
-  if(!mylistings.length) return <LoadingSpinner></LoadingSpinner>
+
+  const filteredListings = listings.filter(listing => listing.email === email);
+  
+  if (!listings.length) return <LoadingSpinner></LoadingSpinner>
 
   const handleDelete = (_id) => {
 
@@ -46,8 +47,8 @@ const MyListings = () => {
                 icon: "success"
               });
 
-              const remainingListings = mylistings.filter(list => list._id !== _id);
-              setMyListings(remainingListings)
+              const remainingListings = listings.filter(list => list._id !== _id);
+              setListings(remainingListings)
             }
           })
       }
@@ -55,7 +56,7 @@ const MyListings = () => {
 
   }
 
-  
+
   return (
     <section className="py-16 px-4 bg-base-100 text-base-content mt-10">
       <motion.div
@@ -79,8 +80,8 @@ const MyListings = () => {
               </tr>
             </thead>
             <tbody>
-              {mylistings?.length > 0 ? (
-                mylistings.map((listing) => (
+              {filteredListings?.length > 0 ? (
+                filteredListings.map((listing) => (
                   <tr key={listing._id} className="hover">
                     <td className="font-medium">{listing.title}</td>
                     <td>{listing.location}</td>
