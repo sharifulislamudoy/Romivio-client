@@ -18,8 +18,6 @@ const FeaturedPosts = () => {
             .catch((err) => console.error("Error fetching featured posts:", err));
     }, []);
 
-
-
     return (
         <motion.section
             className="py-16 px-4 bg-base-100 text-base-content"

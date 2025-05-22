@@ -37,8 +37,6 @@ const SignupForm = () => {
                 displayName: name,
                 photoURL: photo,
             });
-
-            // Manually update context user state
             setUser({ ...user, phoneNumber: contact, displayName: name, photoURL: photo });
 
             const userProfile = {
@@ -66,6 +64,7 @@ const SignupForm = () => {
                     timer: 3000,
                 });
                 navigate('/add-roommate');
+                form.reset();
             }
 
         } catch (error) {
@@ -77,11 +76,6 @@ const SignupForm = () => {
             });
         }
     };
-
-
-
-
-    // GoogleSignIN
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithPopup(auth, provider);
@@ -104,31 +98,22 @@ const SignupForm = () => {
                 <h2 className="text-3xl font-bold text-center mb-6">📝 Create Your Account</h2>
 
                 <form onSubmit={handleSignUp} className="space-y-5">
-                    {/* Name */}
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
                         <input type="text" name="name" className="input input-bordered w-full" placeholder="Your full name" required />
                     </div>
-
-                    {/* Email */}
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
                         <input type="email" name="email" className="input input-bordered w-full" placeholder="you@example.com" required />
                     </div>
-
-                    {/* Photo URL */}
                     <div>
                         <label htmlFor="photo" className="block text-sm font-medium mb-1">Photo URL</label>
                         <input type="url" name="photo" className="input input-bordered w-full" placeholder="https://example.com/photo.jpg" required />
                     </div>
-
-                    {/* Contact */}
                     <div className="mt-4">
                         <label htmlFor="contact" className="block text-sm font-medium mb-1">Contact Number</label>
                         <input type="tel" name="contact" className="input input-bordered w-full" placeholder="e.g. 01712345678" pattern="[0-9]{11}" required />
                     </div>
-
-                    {/* Password */}
                     <div className="relative">
                         <label htmlFor="password" className="block text-sm font-medium mb-1">
                             Password
@@ -154,8 +139,6 @@ const SignupForm = () => {
                             <li>Minimum 6 characters</li>
                         </ul>
                     </div>
-
-                    {/* Role Selection */}
                     <div>
                         <label htmlFor="role" className="block text-sm font-medium mb-1">I am</label>
                         <select name="role" className="select select-bordered w-full" required>
@@ -165,20 +148,14 @@ const SignupForm = () => {
                             <option value="both">Both</option>
                         </select>
                     </div>
-
-                    {/* Location Preference */}
                     <div>
                         <label htmlFor="location" className="block text-sm font-medium mb-1">Preferred Location</label>
                         <input type="text" name="location" className="input input-bordered w-full" placeholder="e.g. Mirpur, Banani, Dhanmondi" />
                     </div>
-
-                    {/* Budget Range */}
                     <div>
                         <label htmlFor="budget" className="block text-sm font-medium mb-1">Budget Range (BDT)</label>
                         <input type="text" name="budget" className="input input-bordered w-full" placeholder="e.g. 5000 - 10000" />
                     </div>
-
-                    {/* Gender Preference */}
                     <div>
                         <label htmlFor="genderPref" className="block text-sm font-medium mb-1">Preferred Roommate Gender</label>
                         <select name="genderPref" className="select select-bordered w-full">

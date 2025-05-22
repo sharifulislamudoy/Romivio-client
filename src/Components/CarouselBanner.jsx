@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const CarouselBanner = () => {
     const slides = [
@@ -29,9 +29,9 @@ const CarouselBanner = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-        }, 6000); // Slide every 3 seconds
+        }, 6000);
 
-        return () => clearInterval(interval); // Cleanup
+        return () => clearInterval(interval);
     }, [slides.length]);
 
     return (

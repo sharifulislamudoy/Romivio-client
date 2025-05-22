@@ -13,6 +13,11 @@ import UpdateRoommateForm from "./Pages/UpdateRoommateForm";
 import ListingDetails from "./Components/ListingDetails";
 import LoadingSpinner from "./Components/LoadingSpinner";
 import PrivateRoute from "./Provider/PrivateRoute";
+import VerifiedProfiles from "./Components/VerifiedProfiles";
+import CommunityDriven from "./Components/CommunityDriven";
+import FastEasy from "./Components/FastEasy";
+import LocationMatching from "./Components/LocationMatching";
+import ConnectAndChat from "./Components/ConnectAndChat";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +76,26 @@ export const router = createBrowserRouter([
           <ListingDetails></ListingDetails>
         </PrivateRoute>
       },
+      {
+        path: '/verified',
+        Component: VerifiedProfiles,
+      },
+      {
+        path: '/community-driven',
+        Component: CommunityDriven,
+      },
+      {
+        path: '/fast-easy',
+        Component: FastEasy
+      },
+      {
+        path: '/location-matching',
+        Component: LocationMatching,
+      },
+      {
+        path: '/connect-and-chat',
+        Component: ConnectAndChat,
+      }
     ]
   },
 ]);

@@ -9,6 +9,9 @@ import WhyChooseUs from '../Components/WhyChooseUs';
 import { useLocation } from 'react-router-dom';
 import IntroTypingSection from '../Components/IntroTypingSection';
 import CarouselBanner from '../Components/CarouselBanner';
+import CallToActionSection from '../Components/CallToActionSection';
+import OurUsers from '../Components/OurUsers';
+import TopLocations from '../Components/TopLocations';
 
 const Home = () => {
     const location = useLocation();
@@ -30,11 +33,13 @@ const Home = () => {
                 <CarouselBanner></CarouselBanner>
             </div>
             <FeaturedRoommates></FeaturedRoommates>
+            <CallToActionSection></CallToActionSection>
+            <OurUsers></OurUsers>
+            <TopLocations></TopLocations>
+            <Banner></Banner>
             <Testimonials></Testimonials>
             <WhyChooseUs></WhyChooseUs>
             <HowItWorks></HowItWorks>
-            <Banner></Banner>
-
         </div>
     );
 };

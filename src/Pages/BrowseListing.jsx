@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const BrowseListings = () => {
 
   const listings = useLoaderData();
-  // const [listings, setListings] = useState([]);
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   fetch("https://your-backend-api.com/api/listings")
-  //     .then((res) => res.json())
-  //     .then((data) => setListings(data))
-  //     .catch((err) => console.error("Error loading listings:", err));
-  // }, []);
 
   return (
     <section className="py-16 px-4 bg-base-100 text-base-content mt-10">

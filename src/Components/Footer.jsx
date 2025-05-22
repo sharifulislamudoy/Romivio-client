@@ -6,13 +6,10 @@ const Footer = () => {
     <footer className="bg-base-200 text-base-content pt-10 pb-5 px-4">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and Tagline */}
           <div>
             <h2 className="text-2xl font-bold text-primary mb-2">Roomivio</h2>
             <p className="text-sm">Find your perfect roommate and place to live.</p>
           </div>
-
-          {/* Navigation Links */}
           <div>
             <h3 className="footer-title">Navigation</h3>
             <ul className="space-y-1">
@@ -22,8 +19,6 @@ const Footer = () => {
               <li><Link to={"/my-listings"} className="link link-hover p-1">My Listings</Link></li>
             </ul>
           </div>
-
-          {/* Auth Links */}
           <div>
             <h3 className="footer-title">Account</h3>
             <ul className="space-y-1">
@@ -31,8 +26,6 @@ const Footer = () => {
               <li><Link to={"/signup"} className="link link-hover">Signup</Link></li>
             </ul>
           </div>
-
-          {/* Social Media */}
           <div>
             <h3 className="footer-title">Follow Us</h3>
             <div className="flex space-x-4 mt-2">
@@ -43,8 +36,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Divider and Copyright */}
         <div className="mt-10 border-t pt-4 text-sm text-center text-gray-500">
           &copy; {new Date().getFullYear()} Roomivio. All rights reserved.
         </div>

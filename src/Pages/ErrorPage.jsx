@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
-import error404Animation from "../assets/Lottie.json"; // 👈 Import your Lottie JSON file
+import error404Animation from "../assets/Lottie.json";
 
 const errorVariant = {
   hidden: { opacity: 0, y: 50 },
@@ -22,7 +22,6 @@ const ErrorPage = () => {
         whileInView="visible"
         viewport={{ once: false, amount: 0.5 }}
       >
-        {/* Lottie Animation */}
         <div className="w-64 h-64 mx-auto mb-4">
           <Lottie animationData={error404Animation} loop={true} />
         </div>

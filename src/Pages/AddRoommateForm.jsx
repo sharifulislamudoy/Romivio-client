@@ -7,21 +7,15 @@ import { AuthContext } from "../Provider/AuthProvider";
 const AddRoommateForm = () => {
 
   const { user } = useContext(AuthContext);
-
-  console.log(user)
-
   const navigate = useNavigate();
-
   const handleAddListing = e => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const listingData = Object.fromEntries(formData.entries());
 
-    // Manually add the email
     listingData.email = user.email;
 
-    // Send data to the Server
     fetch('http://localhost:3000/listings', {
       method: 'POST',
       headers: {
@@ -39,8 +33,7 @@ const AddRoommateForm = () => {
             draggable: true,
             timer: 3000
           });
-
-          // form.reset(); // optional
+          form.reset(); 
         }
       });
   }
@@ -84,8 +77,6 @@ const AddRoommateForm = () => {
               name="title"
               placeholder="e.g., Looking for a roommate in Mirpur"
               className="input input-bordered w-full"
-              //   value={formData.title}
-              //   onChange={handleChange}
               required
             />
           </div>
@@ -98,8 +89,6 @@ const AddRoommateForm = () => {
                 type="text"
                 name="location"
                 className="input input-bordered w-full"
-                // value={formData.location}
-                // onChange={handleChange}
                 required
               />
             </div>
@@ -110,8 +99,6 @@ const AddRoommateForm = () => {
                 type="number"
                 name="rent"
                 className="input input-bordered w-full"
-                // value={formData.rent}
-                // onChange={handleChange}
                 required
               />
             </div>
@@ -123,8 +110,6 @@ const AddRoommateForm = () => {
               <select
                 name="roomType"
                 className="select select-bordered w-full"
-                // value={formData.roomType}
-                // onChange={handleChange}
                 required
               >
                 <option value="">Select Type</option>
@@ -140,8 +125,6 @@ const AddRoommateForm = () => {
                 name="lifestyle"
                 placeholder="e.g., No Smoking, Night Owl"
                 className="input input-bordered w-full"
-              // value={formData.lifestyle}
-              // onChange={handleChange}
               />
             </div>
           </div>
@@ -152,8 +135,6 @@ const AddRoommateForm = () => {
               name="description"
               rows="4"
               className="textarea textarea-bordered w-full"
-              //   value={formData.description}
-              //   onChange={handleChange}
               required
             ></textarea>
           </div>
@@ -165,8 +146,6 @@ const AddRoommateForm = () => {
                 type="text"
                 name="contact"
                 className="input input-bordered w-full"
-                // value={formData.contact}
-                // onChange={handleChange}
                 required
               />
             </div>
@@ -176,8 +155,6 @@ const AddRoommateForm = () => {
               <select
                 name="availability"
                 className="select select-bordered w-full"
-              // value={formData.availability}
-              // onChange={handleChange}
               >
                 <option value="available">Available</option>
                 <option value="not_available">Not Available</option>
