@@ -21,51 +21,64 @@ const SignupForm = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const { createUser, setUser } = useContext(AuthContext);
+    const { createUser, setUser, updateUser } = useContext(AuthContext);
 
-    const handleSignUp = e => {
-
+    const handleSignUp = async (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
 
-        const { email, password, ...restFormData } = Object.fromEntries(formData.entries());
+        const { name, photo, email, password, ...restFormData } = Object.fromEntries(formData.entries());
 
+        try {
+            const result = await createUser(email, password);
+            const user = result.user;
 
-        createUser(email, password)
-            .then(result => {
-                const user = result.user
-                setUser(user);
+            await updateUser({
+                displayName: name,
+                photoURL: photo,
+            });
 
-                const userProfile = {
-                    email,
-                    ...restFormData,
-                }
+            // Manually update context user state
+            setUser({ ...user, displayName: name, photoURL: photo });
 
-                fetch('http://localhost:3000/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(userProfile)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.insertedId) {
-                            Swal.fire({
-                                title: "Account Created Successfully",
-                                icon: "success",
-                                draggable: true,
-                                timer: 3000
-                            });
-                        }
-                    })
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        navigate('/add-roommate')
+            const userProfile = {
+                name,
+                email,
+                photo,
+                ...restFormData,
+            };
+
+            const response = await fetch('http://localhost:3000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(userProfile),
+            });
+
+            const data = await response.json();
+
+            if (data.insertedId) {
+                Swal.fire({
+                    title: "Account Created Successfully",
+                    icon: "success",
+                    timer: 3000,
+                });
+                navigate('/add-roommate');
+            }
+
+        } catch (error) {
+            console.error("Sign-up error:", error);
+            Swal.fire({
+                title: "Sign-up Failed",
+                text: error.message,
+                icon: "error",
+            });
+        }
     };
+
+
 
 
     // GoogleSignIN

@@ -79,7 +79,7 @@ const Header = () => {
                                 </div>
                             </label>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
-                                <li><span className="text-sm font-semibold">{user.email}</span></li>
+                                <li><span className="text-sm font-semibold">{user.name}</span></li>
                                 <li><button onClick={handleLogOut}><NavLink to="/login">Log out</NavLink></button></li>
                             </ul>
                         </div>
