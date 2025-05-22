@@ -28,24 +28,24 @@ const SignupForm = () => {
         const form = e.target;
         const formData = new FormData(form);
 
-        const { name, photo, email, password, ...restFormData } = Object.fromEntries(formData.entries());
+        const { name, contact, photo, email, password, ...restFormData } = Object.fromEntries(formData.entries());
 
         try {
             const result = await createUser(email, password);
             const user = result.user;
-
             await updateUser({
                 displayName: name,
                 photoURL: photo,
             });
 
             // Manually update context user state
-            setUser({ ...user, displayName: name, photoURL: photo });
+            setUser({ ...user, phoneNumber: contact, displayName: name, photoURL: photo });
 
             const userProfile = {
                 name,
                 email,
                 photo,
+                contact,
                 ...restFormData,
             };
 

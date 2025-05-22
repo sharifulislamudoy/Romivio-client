@@ -42,16 +42,12 @@ export const router = createBrowserRouter([
       {
         path: '/add-roommate',
         element: <PrivateRoute>
-           <AddRoommateForm></AddRoommateForm>
+          <AddRoommateForm></AddRoommateForm>
         </PrivateRoute>
       },
       {
         path: '/my-listings',
-        loader: () => fetch(`http://localhost:3000/listings`),
-        hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
-        element: <PrivateRoute>
-          <MyListings></MyListings>
-        </PrivateRoute>
+        element: <PrivateRoute><MyListings /></PrivateRoute>
       },
       {
         path: '/update-roommate/:id',

@@ -1,15 +1,25 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../Components/LoadingSpinner";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const MyListings = () => {
 
-  const initialListings = useLoaderData();
-  const [listings , setListings] = useState(initialListings)
+  const { user , loading} = useContext(AuthContext);
 
-  if(!listings.length) return <LoadingSpinner></LoadingSpinner>
+  const [mylistings , setMyListings] = useState([]);
+
+  useEffect(() => {
+    if(user?.email) {
+      fetch(`http://localhost:3000/listings?email=${user.email}`)
+      .then(res => res.json())
+      .then(data => setMyListings(data));
+    }
+  },[user?.email])
+
+  if(!mylistings.length) return <LoadingSpinner></LoadingSpinner>
 
   const handleDelete = (_id) => {
 
@@ -36,8 +46,8 @@ const MyListings = () => {
                 icon: "success"
               });
 
-              const remainingListings = listings.filter(list => list._id !== _id);
-              setListings(remainingListings)
+              const remainingListings = mylistings.filter(list => list._id !== _id);
+              setMyListings(remainingListings)
             }
           })
       }
@@ -69,8 +79,8 @@ const MyListings = () => {
               </tr>
             </thead>
             <tbody>
-              {listings?.length > 0 ? (
-                listings.map((listing) => (
+              {mylistings?.length > 0 ? (
+                mylistings.map((listing) => (
                   <tr key={listing._id} className="hover">
                     <td className="font-medium">{listing.title}</td>
                     <td>{listing.location}</td>

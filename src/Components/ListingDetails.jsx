@@ -1,13 +1,18 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion } from "framer-motion";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const ListingDetails = () => {
+
+    const { user } = useContext(AuthContext)
     const listing = useLoaderData();
     const [likeCount, setLikeCount] = useState(listing.likeCount || 0);
     const [liked, setLiked] = useState(false);
 
     const handleLike = async () => {
+        console.log(user.phoneNumber); // should print the phone number
+
         window.location.reload()
         if (!liked) {
             try {
@@ -52,8 +57,8 @@ const ListingDetails = () => {
                 </p>
 
                 <div className="space-y-4 text-sm sm:text-base grid grid-cols-1 md:grid-cols-2">
-                    <p><strong>📧 User Email:</strong> {listing.userEmail}</p>
-                    <p><strong>🙋‍♂️ User Name:</strong> {listing.userName}</p>
+                    <p><strong>📧 User Email:</strong> {user.email}</p>
+                    <p><strong>🙋‍♂️ User Name:</strong> {user.displayName}</p>
                     <p><strong>🧾 Title:</strong> {listing.title}</p>
                     <p><strong>📍 Location:</strong> {listing.location}</p>
                     <p><strong>💰 Rent Amount:</strong> ৳{listing.rent}</p>
@@ -82,7 +87,7 @@ const ListingDetails = () => {
 
                     {liked && (
                         <p className="mt-4 text-base text-success">
-                            📞 Contact Info: {listing.contactInfo}
+                            📞 Contact Info: {user.metaData.phoneNumber || "No phone number available"}
                         </p>
                     )}
 

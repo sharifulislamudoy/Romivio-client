@@ -1,16 +1,23 @@
 import { motion } from "framer-motion";
+import { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const UpdateRoommateForm = () => {
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-
     const data = useLoaderData();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    if (!user || !data) {
+        return <LoadingSpinner />;
+    }
+
     const { _id, title, location, rent, roomType, lifestyle, description, contact, availability } = data || {};
 
-
-
-    const handleUpdateListing = e => {
+    const handleUpdateListing = (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
@@ -23,7 +30,7 @@ const UpdateRoommateForm = () => {
 
         // Check if any field has changed
         const isChanged = Object.keys(updateData).some(key => {
-            return updateData[key] !== String(data[key]);
+            return updateData[key]?.trim() !== String(data[key])?.trim();
         });
 
         if (!isChanged) {
@@ -39,23 +46,26 @@ const UpdateRoommateForm = () => {
             denyButtonText: `Don't save`
         }).then((result) => {
             if (result.isConfirmed) {
-                navigate('/my-listings');
+                setIsSubmitting(true);
                 fetch(`http://localhost:3000/listings/${_id}`, {
-                    method: 'PUT',
+                    method: "PUT",
                     headers: {
-                        'content-type': 'application/json'
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify(updateData)
                 })
                     .then(res => res.json())
                     .then(data => {
+                        setIsSubmitting(false);
                         if (data.modifiedCount) {
                             Swal.fire("Saved!", "", "success");
+                            navigate("/my-listings");
                         } else {
                             Swal.fire("No changes were made.", "", "info");
                         }
                     })
                     .catch(error => {
+                        setIsSubmitting(false);
                         console.error("Error updating listing:", error);
                         Swal.fire("Error!", "Something went wrong while updating.", "error");
                     });
@@ -82,7 +92,7 @@ const UpdateRoommateForm = () => {
                             <label className="block font-medium mb-1">Your Name</label>
                             <input
                                 type="text"
-                                // value={user.name}
+                                value={user.displayName}
                                 className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
                                 readOnly
                             />
@@ -91,12 +101,13 @@ const UpdateRoommateForm = () => {
                             <label className="block font-medium mb-1">Your Email</label>
                             <input
                                 type="email"
-                                // value={user.email}
+                                value={user.email}
                                 className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
                                 readOnly
                             />
                         </div>
                     </div>
+
                     <div>
                         <label className="block font-medium mb-1">Title</label>
                         <input
@@ -105,8 +116,6 @@ const UpdateRoommateForm = () => {
                             name="title"
                             placeholder="e.g., Looking for a roommate in Mirpur"
                             className="input input-bordered w-full"
-                            //   value={formData.title}
-                            //   onChange={handleChange}
                             required
                         />
                     </div>
@@ -120,8 +129,6 @@ const UpdateRoommateForm = () => {
                                 type="text"
                                 name="location"
                                 className="input input-bordered w-full"
-                                // value={formData.location}
-                                // onChange={handleChange}
                                 required
                             />
                         </div>
@@ -132,8 +139,6 @@ const UpdateRoommateForm = () => {
                                 type="number"
                                 name="rent"
                                 className="input input-bordered w-full"
-                                // value={formData.rent}
-                                // onChange={handleChange}
                                 required
                             />
                         </div>
@@ -146,8 +151,6 @@ const UpdateRoommateForm = () => {
                                 defaultValue={roomType}
                                 name="roomType"
                                 className="select select-bordered w-full"
-                                // value={formData.roomType}
-                                // onChange={handleChange}
                                 required
                             >
                                 <option value="">Select Type</option>
@@ -164,11 +167,10 @@ const UpdateRoommateForm = () => {
                                 name="lifestyle"
                                 placeholder="e.g., No Smoking, Night Owl"
                                 className="input input-bordered w-full"
-                            // value={formData.lifestyle}
-                            // onChange={handleChange}
                             />
                         </div>
                     </div>
+
                     <div>
                         <label className="block font-medium mb-1">Description</label>
                         <textarea
@@ -176,11 +178,10 @@ const UpdateRoommateForm = () => {
                             name="description"
                             rows="4"
                             className="textarea textarea-bordered w-full"
-                            //   value={formData.description}
-                            //   onChange={handleChange}
                             required
                         ></textarea>
                     </div>
+
                     <div className="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label className="block font-medium mb-1">Contact Info</label>
@@ -189,8 +190,6 @@ const UpdateRoommateForm = () => {
                                 type="text"
                                 name="contact"
                                 className="input input-bordered w-full"
-                                // value={formData.contact}
-                                // onChange={handleChange}
                                 required
                             />
                         </div>
@@ -201,8 +200,6 @@ const UpdateRoommateForm = () => {
                                 defaultValue={availability}
                                 name="availability"
                                 className="select select-bordered w-full"
-                            // value={formData.availability}
-                            // onChange={handleChange}
                             >
                                 <option value="available">Available</option>
                                 <option value="not_available">Not Available</option>
@@ -210,7 +207,12 @@ const UpdateRoommateForm = () => {
                         </div>
                     </div>
 
-                    <input type="submit" value="Update Listing" className="mt-5 text-center btn btn-primary w-full sm:w-auto" />
+                    <input
+                        type="submit"
+                        value={isSubmitting ? "Updating..." : "Update Listing"}
+                        disabled={isSubmitting}
+                        className="mt-5 text-center btn btn-primary w-full sm:w-auto"
+                    />
                 </form>
             </motion.div>
         </section>

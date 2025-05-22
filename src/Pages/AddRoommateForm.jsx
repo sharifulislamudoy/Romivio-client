@@ -1,8 +1,14 @@
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AddRoommateForm = () => {
+
+  const { user } = useContext(AuthContext);
+
+  console.log(user)
 
   const navigate = useNavigate();
 
@@ -12,8 +18,10 @@ const AddRoommateForm = () => {
     const formData = new FormData(form);
     const listingData = Object.fromEntries(formData.entries());
 
-    // Send data to the Server
+    // Manually add the email
+    listingData.email = user.email;
 
+    // Send data to the Server
     fetch('http://localhost:3000/listings', {
       method: 'POST',
       headers: {
@@ -29,14 +37,14 @@ const AddRoommateForm = () => {
             title: "Your Listing is Added",
             icon: "success",
             draggable: true,
-            timer:3000
+            timer: 3000
           });
 
-          // form.reset();
-
+          // form.reset(); // optional
         }
       });
   }
+
   return (
     <section className="py-16 px-4 bg-base-100 text-base-content">
       <motion.div
@@ -54,7 +62,7 @@ const AddRoommateForm = () => {
               <label className="block font-medium mb-1">Your Name</label>
               <input
                 type="text"
-                // value={user.name}
+                value={user.displayName}
                 className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
                 readOnly
               />
@@ -63,7 +71,7 @@ const AddRoommateForm = () => {
               <label className="block font-medium mb-1">Your Email</label>
               <input
                 type="email"
-                // value={user.email}
+                value={user.email}
                 className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
                 readOnly
               />
