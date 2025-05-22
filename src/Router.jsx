@@ -12,6 +12,7 @@ import MyListings from "./Pages/MyListings";
 import UpdateRoommateForm from "./Pages/UpdateRoommateForm";
 import ListingDetails from "./Components/ListingDetails";
 import LoadingSpinner from "./Components/LoadingSpinner";
+import PrivateRoute from "./Provider/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -40,13 +41,17 @@ export const router = createBrowserRouter([
       },
       {
         path: '/add-roommate',
-        Component: AddRoommateForm,
+        element: <PrivateRoute>
+           <AddRoommateForm></AddRoommateForm>
+        </PrivateRoute>
       },
       {
         path: '/my-listings',
         loader: () => fetch(`http://localhost:3000/listings`),
         hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
-        Component: MyListings,
+        element: <PrivateRoute>
+          <MyListings></MyListings>
+        </PrivateRoute>
       },
       {
         path: '/update-roommate/:id',
@@ -64,7 +69,9 @@ export const router = createBrowserRouter([
           return res.json();
         },
         hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
-        Component: ListingDetails,
+        element: <PrivateRoute>
+          <ListingDetails></ListingDetails>
+        </PrivateRoute>
       },
     ]
   },

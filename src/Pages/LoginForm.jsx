@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
 import { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const formVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -15,10 +16,10 @@ const formVariant = {
 };
 
 const LoginForm = () => {
+  const location = useLocation();
 
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = e => {
@@ -27,9 +28,6 @@ const LoginForm = () => {
 
     const email = form.email.value;
     const password = form.password.value;
-    // const formData = new FormData(form);
-    // const { email, password } = Object.fromEntries(formData.entries());
-    console.log({ email, password });
     signIn(email, password)
       .then((result) => {
         const user = result.user;
@@ -41,9 +39,12 @@ const LoginForm = () => {
             timer:2000,
           })
         }
+        navigate(`${location.state? location.state : "/"}`)
       })
       .catch((error) => {
-        console.log(error)
+        if (error) {
+          toast.error("Password Wrong")
+        }
       })
 
     navigate('/my-listings')

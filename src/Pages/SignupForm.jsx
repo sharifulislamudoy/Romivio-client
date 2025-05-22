@@ -32,10 +32,6 @@ const SignupForm = () => {
         const { email, password, ...restFormData } = Object.fromEntries(formData.entries());
 
 
-
-        console.log(email, password, restFormData);
-
-
         createUser(email, password)
             .then(result => {
                 const user = result.user
@@ -68,7 +64,7 @@ const SignupForm = () => {
             .catch(error => {
                 console.log(error)
             })
-            navigate('/add-roommate')
+        navigate('/add-roommate')
     };
 
 
@@ -77,7 +73,7 @@ const SignupForm = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
-            console.log("User Info:", user);
+            navigate('/add-roommate')
         } catch (error) {
             console.error("Google Sign-In Error", error.message);
         }

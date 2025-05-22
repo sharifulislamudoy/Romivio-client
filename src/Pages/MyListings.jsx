@@ -23,7 +23,6 @@ const MyListings = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
-      console.log(result.isConfirmed)
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/listings/${_id}`, {
           method: 'DELETE'

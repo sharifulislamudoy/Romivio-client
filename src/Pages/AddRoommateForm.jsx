@@ -11,7 +11,6 @@ const AddRoommateForm = () => {
     const form = e.target;
     const formData = new FormData(form);
     const listingData = Object.fromEntries(formData.entries());
-    console.log(listingData);
 
     // Send data to the Server
 
@@ -38,31 +37,6 @@ const AddRoommateForm = () => {
         }
       });
   }
-
-
-
-  // const [formData, setFormData] = useState({
-  //   title: "",
-  //   location: "",
-  //   rent: "",
-  //   roomType: "",
-  //   lifestyle: "",
-  //   description: "",
-  //   contact: "",
-  //   availability: "available",
-  // });
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prev) => ({ ...prev, [name]: value }));
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // handle your API call here
-  //   console.log("Form Submitted:", { ...formData, email: user.email, name: user.name });
-  // };
-
   return (
     <section className="py-16 px-4 bg-base-100 text-base-content">
       <motion.div
