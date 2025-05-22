@@ -1,15 +1,34 @@
 import logoImg from '../assets/logo.jpg';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import '../Components/Header.css'
+import { useContext } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Header = () => {
-    const isScrolled = false;
-    const isLoggedIn = false;
 
-    const user = {
-        displayName: "John Doe",
-        photoURL: "https://i.pravatar.cc/150?img=3",
-    };
+    const navigate = useNavigate();
+
+    const { user, logOut } = useContext(AuthContext);
+    const isScrolled = false;
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                Swal.fire("Logged Out Succesfully");
+            })
+            .catch((error) => {
+                if (error) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    });
+                }
+
+            })
+    navigate('/login')
+    }
 
 
     return (
@@ -34,10 +53,6 @@ const Header = () => {
                         <p className='lg:text-3xl text-xl font-bold text-primary'>Roomivio</p>
                     </div>
                 </div>
-
-
-
-
                 {/* Nav Links - Desktop */}
                 <div className='navbar'>
                     <ul className="menu menu-horizontal px-1 space-x-2 hidden lg:flex">
@@ -50,7 +65,7 @@ const Header = () => {
 
                 {/* Auth Buttons or User Info */}
                 <div className=" items-center space-x-2">
-                    {!isLoggedIn ? (
+                    {!user ? (
                         <div className='flex gap-3'>
                             <Link to="/login" className="btn btn-outline btn-sm">Login</Link>
                             <Link to="/signup" className="btn text-white btn-primary btn-sm">Signup</Link>
@@ -64,8 +79,8 @@ const Header = () => {
                                 </div>
                             </label>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
-                                <li><span className="text-sm font-semibold">{user.displayName}</span></li>
-                                <li><NavLink to="/logout">Log out</NavLink></li>
+                                <li><span className="text-sm font-semibold">{user.email}</span></li>
+                                <li><button onClick={handleLogOut}><NavLink to="/login">Log out</NavLink></button></li>
                             </ul>
                         </div>
                     )}

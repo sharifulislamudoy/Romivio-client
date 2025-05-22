@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
-import { NavLink } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
+import { useContext, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const formVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -11,6 +15,39 @@ const formVariant = {
 };
 
 const LoginForm = () => {
+
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleLogin = e => {
+    e.preventDefault();
+    const form = e.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+    // const formData = new FormData(form);
+    // const { email, password } = Object.fromEntries(formData.entries());
+    console.log({ email, password });
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        if (user) {
+          Swal.fire({
+            title: "Login Successful!",
+            icon: "success",
+            draggable: true,
+            timer:2000,
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    navigate('/my-listings')
+  }
   return (
     <section className="min-h-screen py-20 px-4 bg-base-100 text-base-content">
       <motion.div
@@ -22,31 +59,39 @@ const LoginForm = () => {
       >
         <h2 className="text-3xl font-bold text-center mb-8">🔐 Login to Roomivio</h2>
 
-        <form className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-1">
               Email Address
             </label>
             <input
               type="email"
-              id="email"
+              name="email"
               className="input input-bordered w-full"
               placeholder="you@example.com"
               required
             />
           </div>
 
-          <div>
+          <div className="relative">
             <label htmlFor="password" className="block text-sm font-medium mb-1">
               Password
             </label>
             <input
-              type="password"
-              id="password"
-              className="input input-bordered w-full"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="input input-bordered w-full pr-10"
               placeholder="••••••••"
+              pattern="(?=.*[a-z])(?=.*[A-Z]).{6,}"
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-9 text-gray-500"
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
           </div>
 
           <div className="flex justify-between text-sm">

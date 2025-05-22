@@ -21,7 +21,7 @@ const SignupForm = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, setUser } = useContext(AuthContext);
 
     const handleSignUp = e => {
 
@@ -38,7 +38,8 @@ const SignupForm = () => {
 
         createUser(email, password)
             .then(result => {
-                console.log(result.user);
+                const user = result.user
+                setUser(user);
 
                 const userProfile = {
                     email,
@@ -69,22 +70,6 @@ const SignupForm = () => {
             })
             navigate('/add-roommate')
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // GoogleSignIN
