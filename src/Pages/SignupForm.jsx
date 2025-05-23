@@ -47,7 +47,7 @@ const SignupForm = () => {
                 ...restFormData,
             };
 
-            const response = await fetch('http://localhost:3000/users', {
+            const response = await fetch('https://roomivio-server.vercel.app/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

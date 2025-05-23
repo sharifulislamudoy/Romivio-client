@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/browse',
-        loader: () => fetch(`http://localhost:3000/listings`),
+        loader: () => fetch(`https://roomivio-server.vercel.app/listings`),
         hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
         Component: BrowseListing,
       },
@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/update-roommate/:id',
-        loader: ({ params }) => fetch(`http://localhost:3000/listings/${params.id}`),
+        loader: ({ params }) => fetch(`https://roomivio-server.vercel.app/listings/${params.id}`),
         hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
         element: <PrivateRoute>
           <UpdateRoommateForm></UpdateRoommateForm>
@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
       {
         path: '/listings/:id',
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:3000/listings/${params.id}`);
+          const res = await fetch(`https://roomivio-server.vercel.app/listings/${params.id}`);
           if (!res.ok) {
             throw new Error("Failed to fetch listing");
           }

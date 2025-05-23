@@ -5,7 +5,7 @@ const TopLocations = () => {
   const [locationCounts, setLocationCounts] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:3000/users")
+    fetch("https://roomivio-server.vercel.app/users")
       .then(res => res.json())
       .then(data => {
         const counts = {};

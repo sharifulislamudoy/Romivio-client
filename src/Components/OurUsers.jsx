@@ -7,7 +7,7 @@ const OurUsers = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users")
+    fetch("https://roomivio-server.vercel.app/users")
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch users");
         return res.json();

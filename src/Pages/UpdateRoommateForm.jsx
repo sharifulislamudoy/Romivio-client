@@ -47,7 +47,7 @@ const UpdateRoommateForm = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 setIsSubmitting(true);
-                fetch(`http://localhost:3000/listings/${_id}`, {
+                fetch(`https://roomivio-server.vercel.app/listings/${_id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"

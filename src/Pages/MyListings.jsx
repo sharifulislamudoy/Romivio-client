@@ -12,7 +12,7 @@ const MyListings = () => {
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/listings')
+    fetch('https://roomivio-server.vercel.app/listings')
       .then(res => res.json())
       .then(data => setListings(data));
   }, []);
@@ -35,7 +35,7 @@ const MyListings = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/listings/${_id}`, {
+        fetch(`https://roomivio-server.vercel.app/listings/${_id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())

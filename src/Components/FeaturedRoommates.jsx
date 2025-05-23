@@ -8,7 +8,7 @@ const FeaturedPosts = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:3000/listings?limit=8")
+        fetch("https://roomivio-server.vercel.app/listings?limit=8")
             .then((res) => res.json())
             .then((data) => {
                 const availablePosts = data

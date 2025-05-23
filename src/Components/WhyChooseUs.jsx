@@ -32,31 +32,35 @@ const WhyChooseUs = () => {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
+              id: 1,
               icon: <ShieldCheck className="mx-auto" />,
               title: "Verified Profiles",
               desc: "We manually review listings and users to reduce fraud and ensure safety.",
               link: "/verified"
             },
             {
+              id: 2,
               icon: <Users className="mx-auto" />,
               title: "Community-Driven",
               desc: "Built for students and working professionals seeking compatible roommates.",
               link: "/community-driven"
             },
             {
+              id: 3,
               icon: <Clock className="mx-auto" />,
               title: "Fast & Easy",
               desc: "Post listings or find roommates in just a few minutes. No complicated steps.",
               link: "/fast-easy"
             },
             {
+              id: 4,
               icon: <MapPin className="mx-auto" />,
               title: "Location Matching",
               desc: "Find matches in your exact area — perfect for city-specific housing needs.",
               link: '/location-matching'
             },
           ].map((item, i) => (
-            <Link to={item.link}>
+            <Link key={item.id} to={item.link}>
               <motion.div
                 key={i}
                 className="card bg-base-100 p-6 shadow-md hover:shadow-xl transition"

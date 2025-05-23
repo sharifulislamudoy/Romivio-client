@@ -14,7 +14,7 @@ const ListingDetails = () => {
 
         if (!liked) {
             try {
-                const res = await fetch(`http://localhost:3000/listings/${listing._id}/like`, {
+                const res = await fetch(`https://roomivio-server.vercel.app/listings/${listing._id}/like`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                 });

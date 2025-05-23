@@ -16,7 +16,7 @@ const AddRoommateForm = () => {
 
     listingData.email = user.email;
 
-    fetch('http://localhost:3000/listings', {
+    fetch('https://roomivio-server.vercel.app/listings', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
