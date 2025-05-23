@@ -4,22 +4,22 @@ const CarouselBanner = () => {
     const slides = [
         {
             id: "item1",
-            src: "https://i.ibb.co/8SDz608/Untitled-design-59.png",
+            src: "https://i.ibb.co/WRGMJkC/Blue-Purple-Modern-Minimalist-Dream-House-For-Sale-Banner.png",
             alt: "Slide 1"
         },
         {
             id: "item2",
-            src: "https://i.ibb.co/0pNHkSx1/Untitled-design-60.png",
+            src: "https://i.ibb.co/wZCVjK9q/Find.png",
             alt: "Slide 2"
         },
         {
             id: "item3",
-            src: "https://i.ibb.co/WpdSXHND/Untitled-design-63.png",
+            src: "https://i.ibb.co/bpLV4Ry/YOur-Best-Choice.png",
             alt: "Slide 3"
         },
         {
             id: "item4",
-            src: "https://i.ibb.co/mVTZ5C1p/Untitled-design-62.png",
+            src: "https://i.ibb.co/DcW592K/880-1995-322033.png",
             alt: "Slide 4"
         }
     ];
