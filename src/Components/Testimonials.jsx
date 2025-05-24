@@ -42,41 +42,44 @@ const cardVariant = {
 
 const Testimonials = () => {
   return (
-    <section className="py-20 px-4 bg-base-100 text-base-content">
+    <section className="py-20 px-4 bg-gradient-to-b from-base-100 to-base-200 text-base-content">
       <div className="max-w-7xl mx-auto">
         <motion.h2
-          className="text-3xl font-bold text-center mb-12"
+          className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-primary"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
         >
           💬 What Our Users Say
         </motion.h2>
+        <p className="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+          Genuine feedback from real users who’ve found their perfect roommate through Roomivio.
+        </p>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((user, i) => (
             <motion.div
               key={user.id}
-              className="card bg-base-200 shadow-md p-6 hover:shadow-xl transition"
+              className="bg-white/80 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-primary/10 hover:shadow-xl transition-all"
               custom={i}
               variants={cardVariant}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="flex items-center gap-4 mb-4">
                 <img
                   src={user.avatar}
                   alt={user.name}
-                  className="w-14 h-14 rounded-full object-cover"
+                  className="w-14 h-14 rounded-full object-cover border-2 border-primary"
                 />
                 <div>
-                  <h4 className="text-lg font-semibold">{user.name}</h4>
+                  <h4 className="text-lg font-semibold text-primary">{user.name}</h4>
                   <p className="text-sm text-gray-500">{user.location}</p>
                 </div>
               </div>
-              <p className="text-sm mb-4">{user.feedback}</p>
+              <p className="text-gray-700 text-sm mb-4 italic">“{user.feedback}”</p>
               <div className="text-yellow-400 text-lg">
                 {"★".repeat(user.rating)}
                 {"☆".repeat(5 - user.rating)}

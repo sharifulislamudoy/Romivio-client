@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from 'react';
-import Banner from '../Components/Banner';
 import FeaturedRoommates from '../Components/FeaturedRoommates';
 import HowItWorks from '../Components/HowItWorks';
 import LoadingSpinner from '../Components/LoadingSpinner';
@@ -32,11 +31,10 @@ const Home = () => {
                 <IntroTypingSection></IntroTypingSection>
                 <CarouselBanner></CarouselBanner>
             </div>
-            <FeaturedRoommates></FeaturedRoommates>
             <CallToActionSection></CallToActionSection>
+            <FeaturedRoommates></FeaturedRoommates>
             <OurUsers></OurUsers>
             <TopLocations></TopLocations>
-            <Banner></Banner>
             <Testimonials></Testimonials>
             <WhyChooseUs></WhyChooseUs>
             <HowItWorks></HowItWorks>

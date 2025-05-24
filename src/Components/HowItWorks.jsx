@@ -6,60 +6,65 @@ const steps = [
     title: "1. Create an Account",
     description: "Sign up using your email or Google to get started quickly.",
     icon: "👤",
-    link: '/signup'
+    link: "/signup",
   },
   {
     title: "2. Post or Browse Listings",
-    description: "Post a roommate request or browse through available listings in your area.",
+    description: "Post a roommate request or browse available listings in your area.",
     icon: "🏠",
-    link: '/browse'
+    link: "/browse",
   },
   {
     title: "3. Connect and Chat",
     description: "Use our secure platform to connect, chat, and finalize roommate matches.",
     icon: "💬",
-    link: '/connect-and-chat'
+    link: "/connect-and-chat",
   },
 ];
 
 const itemVariant = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  },
+    transition: { duration: 0.6, delay: i * 0.2, ease: "easeOut" },
+  }),
 };
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 px-4 bg-base-100 text-base-content">
-      <div className="w-11/12 mx-auto">
+    <section className="py-20 px-4 bg-gradient-to-b from-base-100 to-base-200 text-base-content">
+      <div className="max-w-6xl mx-auto">
         <motion.h2
-          className="text-3xl font-bold text-center mb-12"
+          className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-primary"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
         >
           🛠️ How It Works
         </motion.h2>
-        <div className="grid gap-10 md:grid-cols-3">
+
+        <div className="grid gap-8 md:grid-cols-3">
           {steps.map((step, index) => (
-            <Link to={step.link}>
-              <motion.div
-                key={index}
-                className="card bg-base-200 shadow-md p-6 rounded-xl text-center"
-                variants={itemVariant}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.4 }}
+            <motion.div
+              key={index}
+              custom={index}
+              variants={itemVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.4 }}
+              className="group hover:-translate-y-1 transition-transform"
+            >
+              <Link
+                to={step.link}
+                className="block bg-white/90 backdrop-blur border border-primary/10 shadow-lg rounded-2xl p-6 text-center hover:shadow-xl transition-all h-full"
               >
-                <div className="text-5xl mb-4">{step.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-500">{step.description}</p>
-              </motion.div>
-            </Link>
+                <div className="text-6xl mb-4">{step.icon}</div>
+                <h3 className="text-xl font-semibold text-primary mb-2">{step.title}</h3>
+                <p className="text-sm text-gray-600">{step.description}</p>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

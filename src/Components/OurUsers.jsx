@@ -50,37 +50,39 @@ const OurUsers = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
           👥 Our Users
         </h2>
-
         <div className="overflow-x-auto">
-          <table className="table w-full text-sm border border-base-300">
-            <thead>
-              <tr className="bg-base-200 text-base-content">
-                <th className="p-3">Photo</th>
-                <th className="p-3">Name</th>
-                <th className="p-3">Email</th>
-                <th className="p-3">Gender Preference</th>
-                <th className="p-3">Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map(({ _id, name, email, location, photo, genderPref }) => (
-                <tr key={_id} className="hover:bg-base-200 transition">
-                  <td className="p-3">
-                    <img
-                      src={photo}
-                      alt={name}
-                      className="w-12 h-12 rounded-full object-cover border border-primary"
-                    />
-                  </td>
-                  <td className="p-3 font-medium">{name}</td>
-                  <td className="p-3 text-gray-600">{email}</td>
-                  <td className="p-3 text-gray-600">{genderPref}</td>
-                  <td className="p-3 text-gray-500">{location}</td>
+          <div className="max-h-[400px] overflow-y-auto">
+            <table className="table w-full text-sm border border-base-300">
+              <thead className="sticky top-0 z-10 bg-base-200">
+                <tr className="text-base-content">
+                  <th className="p-3">Photo</th>
+                  <th className="p-3">Name</th>
+                  <th className="p-3">Email</th>
+                  <th className="p-3">Gender Preference</th>
+                  <th className="p-3">Location</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {users.map(({ _id, name, email, location, photo, genderPref }) => (
+                  <tr key={_id} className="hover:bg-base-200 transition">
+                    <td className="p-3">
+                      <img
+                        src={photo}
+                        alt={name}
+                        className="w-12 h-12 rounded-full object-cover border border-primary"
+                      />
+                    </td>
+                    <td className="p-3 font-medium">{name}</td>
+                    <td className="p-3 text-gray-600">{email}</td>
+                    <td className="p-3 text-gray-600">{genderPref}</td>
+                    <td className="p-3 text-gray-500">{location}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
+
       </div>
     </motion.section>
   );
