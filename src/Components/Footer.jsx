@@ -17,6 +17,7 @@ const Footer = () => {
               <li><Link to={'/browse'} className="link link-hover p-1">Browse Listing</Link></li>
               <li><Link to={"/add-roommate"} className="link link-hover p-1">Add to Find Roommate</Link></li>
               <li><Link to={"/my-listings"} className="link link-hover p-1">My Listings</Link></li>
+              <li><Link to={"/about-us"} className="link link-hover p-1">About Us</Link></li>
             </ul>
           </div>
           <div>
@@ -28,7 +29,7 @@ const Footer = () => {
           </div>
           <div>
             <h3 className="footer-title">Follow Us</h3>
-            <div className="flex space-x-4 mt-2">
+            <div className="flex space-x-4 ..2">
               <Link to={'/'} className="text-xl hover:text-blue-800"><i className="fab fa-facebook"></i></Link>
               <Link to={'/'} className="text-xl hover:text-blue-500"><i className="fab fa-twitter"></i></Link>
               <Link to={'/'} className="text-xl hover:text-orange-400"><i className="fab fa-instagram"></i></Link>
@@ -36,7 +37,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-10 border-t pt-4 text-sm text-center text-gray-500">
+        <div className="..10 border-t pt-4 text-sm text-center text-gray-500">
           &copy; {new Date().getFullYear()} Roomivio. All rights reserved.
         </div>
       </div>

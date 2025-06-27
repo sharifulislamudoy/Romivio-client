@@ -32,8 +32,8 @@ const Header = () => {
 
 
     return (
-        <div className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-transparent backdrop-blur-2xl shadow-md' : 'bg-base-100'}`}>
-            <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="w-full sticky backdrop-blur-md shadow-md top-0 bg-white">
+            <div className="w-11/12 mx-auto px-4 flex justify-between items-center">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,11 +41,12 @@ const Header = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 ..3 w-52 p-2 shadow">
                             <li><NavLink className="text-md " to={"/"}>Home</NavLink></li>
                             <li><NavLink className="text-md " to={"/browse"}>Browse Listing</NavLink></li>
                             <li><NavLink className="text-md " to={"/add-roommate"}>Add to Find Roommate</NavLink></li>
                             <li><NavLink className="text-md " to={"/my-listings"}>My Listings</NavLink></li>
+                            <li><NavLink className="text-md " to={"/about-us"}>About Us</NavLink></li>
                         </ul>
                     </div>
                     <div className='flex items-center gap-1'>
@@ -59,6 +60,7 @@ const Header = () => {
                         <li><NavLink to={"/browse"}>Browse Listing</NavLink></li>
                         <li><NavLink to={"/add-roommate"}>Add to Find Roommate</NavLink></li>
                         <li><NavLink to={"/my-listings"}>My Listings</NavLink></li>
+                        <li><NavLink to={"/about-us"}>About Us</NavLink></li>
                     </ul>
                 </div>
                 <div className=" items-center space-x-2">
@@ -74,7 +76,7 @@ const Header = () => {
                                     <img src={user.photoURL} alt="User Avatar" />
                                 </div>
                             </label>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content ..3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
                                 <li><span className="text-sm font-semibold">{user.name}</span></li>
                                 <li><button onClick={handleLogOut}><NavLink to="/login">Log out</NavLink></button></li>
                             </ul>

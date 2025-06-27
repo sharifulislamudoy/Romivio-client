@@ -40,7 +40,7 @@ const ListingDetails = () => {
 
     return (
         <motion.section
-            className="py-16 px-4 bg-base-100 text-base-content mt-25 min-h-screen"
+            className="py-16 px-4 bg-base-100 text-base-content ..25 min-h-screen"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -74,7 +74,7 @@ const ListingDetails = () => {
                     </p>
                 </div>
 
-                <div className="mt-6 flex justify-center items-center flex-col gap-4 ">
+                <div className="..6 flex justify-center items-center flex-col gap-4 ">
                     <button
                         onClick={handleLike}
                         className="btn btn-outline btn-primary"
@@ -84,7 +84,7 @@ const ListingDetails = () => {
                     </button>
 
                     {liked && (
-                        <p className="mt-4 text-base text-success">
+                        <p className="..4 text-base text-success">
                             📞 Contact Info: {listing.contact || "No phone number available"}
                         </p>
                     )}

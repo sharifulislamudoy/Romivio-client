@@ -18,6 +18,7 @@ import CommunityDriven from "./Components/CommunityDriven";
 import FastEasy from "./Components/FastEasy";
 import LocationMatching from "./Components/LocationMatching";
 import ConnectAndChat from "./Components/ConnectAndChat";
+import AboutUs from "./Pages/About Us";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +96,10 @@ export const router = createBrowserRouter([
       {
         path: '/connect-and-chat',
         Component: ConnectAndChat,
+      },
+      {
+        path: '/about-us',
+        Component: AboutUs,
       }
     ]
   },

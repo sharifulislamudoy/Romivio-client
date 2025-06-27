@@ -9,7 +9,7 @@ const cardVariants = {
 const LocationMatching = () => {
   return (
     <motion.section
-      className="mt-10 py-20 px-4 bg-gradient-to-b from-base-100 to-base-200 text-base-content"
+      className="..10 py-20 px-4 bg-gradient-to-b from-base-100 to-base-200 text-base-content"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

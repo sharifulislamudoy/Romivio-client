@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ConnectAndChat = () => {
   return (
     <motion.section
-      className="mt-6 py-20 px-4 bg-primary text-white"
+      className="..6 py-20 px-4 bg-primary text-white"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7 }}

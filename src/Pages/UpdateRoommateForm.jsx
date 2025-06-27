@@ -87,7 +87,7 @@ const UpdateRoommateForm = () => {
                 <h2 className="text-3xl font-bold mb-8 text-center">🔄 Update Roommate Listing</h2>
 
                 <form onSubmit={handleUpdateListing} className="grid gap-6">
-                    <div className="grid sm:grid-cols-2 gap-4 mt-6">
+                    <div className="grid sm:grid-cols-2 gap-4 ..6">
                         <div>
                             <label className="block font-medium mb-1">Your Name</label>
                             <input
@@ -211,7 +211,7 @@ const UpdateRoommateForm = () => {
                         type="submit"
                         value={isSubmitting ? "Updating..." : "Update Listing"}
                         disabled={isSubmitting}
-                        className="mt-5 text-center btn btn-primary w-full sm:w-auto"
+                        className="..5 text-center btn btn-primary w-full sm:w-auto"
                     />
                 </form>
             </motion.div>

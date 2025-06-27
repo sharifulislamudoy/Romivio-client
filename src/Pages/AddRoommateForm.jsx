@@ -50,7 +50,7 @@ const AddRoommateForm = () => {
         <h2 className="text-3xl font-bold mb-8 text-center">📢 Add Roommate Listing</h2>
 
         <form onSubmit={handleAddListing} className="grid gap-6">
-          <div className="grid sm:grid-cols-2 gap-4 mt-6">
+          <div className="grid sm:grid-cols-2 gap-4 ..6">
             <div>
               <label className="block font-medium mb-1">Your Name</label>
               <input
@@ -162,7 +162,7 @@ const AddRoommateForm = () => {
             </div>
           </div>
 
-          <input type="submit" value="Add Listing" className="mt-5 text-center btn btn-primary w-full sm:w-auto" />
+          <input type="submit" value="Add Listing" className="..5 text-center btn btn-primary w-full sm:w-auto" />
         </form>
       </motion.div>
     </section>

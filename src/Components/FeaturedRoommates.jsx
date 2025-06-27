@@ -1,31 +1,27 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import { MdEventAvailable } from "react-icons/md";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const FeaturedPosts = () => {
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
+        AOS.init({ duration: 600, once: false });
+
         fetch("https://roomivio-server.vercel.app/listings?limit=8")
             .then((res) => res.json())
             .then((data) => {
-                const availablePosts = data
-                    .filter((post) => post.availability === "available")
+                const availablePosts = data.filter((post) => post.availability === "available");
                 setPosts(availablePosts);
             })
             .catch((err) => console.error("Error fetching featured posts:", err));
     }, []);
 
     return (
-        <motion.section
-            className="py-16 px-4 bg-base-100 text-base-content"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: false, amount: 0.3 }}
-        >
+        <section className="py-16 px-4 bg-base-100 text-base-content" data-aos="fade-up">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold text-center mb-10">
                     🌟 Featured Roommates Posts
@@ -33,11 +29,10 @@ const FeaturedPosts = () => {
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {posts.map((post) => (
-                        <motion.div
+                        <div
                             key={post._id}
-                            className="card bg-base-200 shadow-md p-6 flex flex-col justify-between"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.2 }}
+                            className="bg-base-200 shadow-md p-6 flex flex-col justify-between hover:scale-105 transition-transform duration-200"
+                            data-aos="zoom-in-up"
                         >
                             <div>
                                 <h3 className="text-xl font-semibold mb-2">{post.title}</h3>
@@ -59,15 +54,15 @@ const FeaturedPosts = () => {
                             </div>
                             <button
                                 onClick={() => navigate(`/listings/${post._id}`)}
-                                className="mt-4 btn btn-primary btn-sm"
+                                className="btn btn-primary btn-sm mt-4"
                             >
                                 See More
                             </button>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>
-        </motion.section>
+        </section>
     );
 };
 

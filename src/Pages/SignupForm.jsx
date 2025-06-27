@@ -110,7 +110,7 @@ const SignupForm = () => {
                         <label htmlFor="photo" className="block text-sm font-medium mb-1">Photo URL</label>
                         <input type="url" name="photo" className="input input-bordered w-full" placeholder="https://example.com/photo.jpg" required />
                     </div>
-                    <div className="mt-4">
+                    <div className="..4">
                         <label htmlFor="contact" className="block text-sm font-medium mb-1">Contact Number</label>
                         <input type="tel" name="contact" className="input input-bordered w-full" placeholder="e.g. 01712345678" pattern="[0-9]{11}" required />
                     </div>
@@ -133,7 +133,7 @@ const SignupForm = () => {
                         >
                             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>
-                        <ul className="text-xs mt-1 text-gray-500 list-disc list-inside">
+                        <ul className="text-xs ..1 text-gray-500 list-disc list-inside">
                             <li>Must contain at least 1 uppercase letter</li>
                             <li>Must contain at least 1 lowercase letter</li>
                             <li>Minimum 6 characters</li>
@@ -178,7 +178,7 @@ const SignupForm = () => {
                     Sign Up with Google
                 </button>
 
-                <p className="mt-6 text-center text-sm">
+                <p className="..6 text-center text-sm">
                     Already have an account?{" "}
                     <NavLink to="/login" className="link link-primary">
                         Login here

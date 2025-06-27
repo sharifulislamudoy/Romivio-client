@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }) => {
                 icon: 'warning',
                 title: 'Unauthorized',
                 text: 'Please log in to access this page',
-                confirmButtonText: 'Go to Login'
+                confirmButtonText: 'Ok'
             }).then(() => {
                 setShowAlert(true);
             });

@@ -6,13 +6,14 @@ import LoadingSpinner from '../Components/LoadingSpinner';
 import Testimonials from '../Components/Testimonials';
 import WhyChooseUs from '../Components/WhyChooseUs';
 import { useLocation } from 'react-router-dom';
-import IntroTypingSection from '../Components/IntroTypingSection';
 import CarouselBanner from '../Components/CarouselBanner';
 import CallToActionSection from '../Components/CallToActionSection';
 import OurUsers from '../Components/OurUsers';
 import TopLocations from '../Components/TopLocations';
+import MyComponent from '../Components/Hook';
 
 const Home = () => {
+    MyComponent();
     const location = useLocation();
     const [loading, setLoading] = useState(false);
 
@@ -26,13 +27,10 @@ const Home = () => {
         return <LoadingSpinner></LoadingSpinner>
     }
     return (
-        <div>
-            <div className='min-h-screen flex justify-center items-center flex-col gap-8'>
-                <IntroTypingSection></IntroTypingSection>
-                <CarouselBanner></CarouselBanner>
-            </div>
-            <CallToActionSection></CallToActionSection>
+        <div className='w-11/12 mx-auto'>
+            <CarouselBanner></CarouselBanner>
             <FeaturedRoommates></FeaturedRoommates>
+            <CallToActionSection></CallToActionSection>
             <OurUsers></OurUsers>
             <TopLocations></TopLocations>
             <Testimonials></Testimonials>

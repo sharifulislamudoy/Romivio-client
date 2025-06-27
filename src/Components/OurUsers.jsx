@@ -40,7 +40,7 @@ const OurUsers = () => {
   }
   return (
     <motion.section
-      className="py-16 px-4 bg-base-100 text-base-content w-5/6 mx-auto"
+      className="py-16 px-4 bg-base-100 text-base-content"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

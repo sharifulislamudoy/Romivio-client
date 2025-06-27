@@ -30,32 +30,23 @@ const CarouselBanner = () => {
         const interval = setInterval(() => {
             setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
         }, 6000);
-
         return () => clearInterval(interval);
     }, [slides.length]);
 
     return (
-        <div>
+        <div className="h-full overflow-hidden object-top">
             <div className="carousel w-full">
                 {slides.map((slide, index) => (
                     <div
                         key={slide.id}
-                        className={`carousel-item w-full ${index === currentSlide ? '' : 'hidden'}`}
+                        className={`carousel-item w-full h-full ${index === currentSlide ? '' : 'hidden'}`}
                     >
-                        <img src={slide.src} alt={slide.alt} className="w-full" />
+                        <img
+                            src={slide.src}
+                            alt={slide.alt}
+                            className="w-full h-full object-cover"
+                        />
                     </div>
-                ))}
-            </div>
-
-            <div className="flex w-full justify-center gap-2 py-2">
-                {slides.map((slide, index) => (
-                    <button
-                        key={slide.id}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`btn btn-xs ${index === currentSlide ? 'btn-primary' : ''}`}
-                    >
-                        {index + 1}
-                    </button>
                 ))}
             </div>
         </div>

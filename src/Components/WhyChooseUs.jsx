@@ -48,7 +48,7 @@ const cardItems = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-base-200 to-base-100 text-base-content">
+    <section className="py-20 px-4 text-base-content">
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2
           className="text-4xl md:text-5xl font-extrabold mb-4 text-primary"

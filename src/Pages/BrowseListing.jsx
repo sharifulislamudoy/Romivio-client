@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const BrowseListings = () => {
@@ -6,7 +6,7 @@ const BrowseListings = () => {
   const listings = useLoaderData();
 
   return (
-    <section className="py-16 px-4 bg-base-100 text-base-content mt-10">
+    <section className="py-16 px-4 bg-base-100 ">
       <motion.div
         className="max-w-7xl mx-auto"
         initial={{ opacity: 0, y: 50 }}

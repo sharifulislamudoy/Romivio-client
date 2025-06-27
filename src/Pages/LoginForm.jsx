@@ -110,7 +110,7 @@ const LoginForm = () => {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm">
+        <p className="..6 text-center text-sm">
           Don’t have an account?{" "}
           <NavLink to="/signup" className="link link-primary">
             Sign up

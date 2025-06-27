@@ -33,7 +33,7 @@ const itemVariant = {
 
 const HowItWorks = () => {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-base-100 to-base-200 text-base-content">
+    <section className="py-20 px-4 bg-white text-base-content">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-primary"
@@ -58,7 +58,7 @@ const HowItWorks = () => {
             >
               <Link
                 to={step.link}
-                className="block bg-white/90 backdrop-blur border border-primary/10 shadow-lg rounded-2xl p-6 text-center hover:shadow-xl transition-all h-full"
+                className="block bg-white backdrop-blur border border-primary/10 shadow-lg rounded-2xl p-6 text-center hover:shadow-xl transition-all h-full"
               >
                 <div className="text-6xl mb-4">{step.icon}</div>
                 <h3 className="text-xl font-semibold text-primary mb-2">{step.title}</h3>

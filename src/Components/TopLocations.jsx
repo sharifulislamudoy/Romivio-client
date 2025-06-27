@@ -22,7 +22,7 @@ const TopLocations = () => {
 
   return (
     <motion.section
-      className="py-20 px-4 bg-gradient-to-b from-base-200 to-base-100 text-base-content"
+      className="py-20 px-4 text-base-content"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -57,7 +57,7 @@ const TopLocations = () => {
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
               <h3 className="text-xl font-bold text-secondary">{location}</h3>
-              <p className="text-sm text-gray-600 mt-2">{count} users</p>
+              <p className="text-sm text-gray-600 ..2">{count} users</p>
             </motion.div>
           ))}
         </div>

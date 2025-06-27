@@ -42,7 +42,7 @@ const cardVariant = {
 
 const Testimonials = () => {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-base-100 to-base-200 text-base-content">
+    <section className="py-20 px-4 text-base-content">
       <div className="max-w-7xl mx-auto">
         <motion.h2
           className="text-4xl md:text-5xl font-extrabold text-center mb-4 text-primary"

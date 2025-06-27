@@ -58,7 +58,7 @@ const MyListings = () => {
 
 
   return (
-    <section className="py-16 px-4 bg-base-100 text-base-content mt-10">
+    <section className="py-16 px-4 bg-base-100 text-base-content ..10">
       <motion.div
         className="max-w-7xl mx-auto"
         initial={{ opacity: 0, y: 60 }}

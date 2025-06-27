@@ -4,7 +4,7 @@ import { ShieldCheck } from "lucide-react";
 const VerifiedProfiles = () => {
   return (
     <motion.section
-      className="mt-6 py-16 px-4 bg-gradient-to-br from-blue-50 to-white text-gray-800"
+      className="..6 py-16 px-4 bg-gradient-to-br from-blue-50 to-white text-gray-800"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -20,7 +20,7 @@ const VerifiedProfiles = () => {
           user has a verified email, phone number, and social credentials — so you connect with real people.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left ..10">
           <motion.div
             className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition"
             whileHover={{ scale: 1.02 }}
