@@ -19,6 +19,8 @@ import FastEasy from "./Components/FastEasy";
 import LocationMatching from "./Components/LocationMatching";
 import ConnectAndChat from "./Components/ConnectAndChat";
 import AboutUs from "./Pages/About Us";
+import Contact from "./Pages/Contact";
+import Support from "./Pages/Support";
 
 export const router = createBrowserRouter([
   {
@@ -100,6 +102,14 @@ export const router = createBrowserRouter([
       {
         path: '/about-us',
         Component: AboutUs,
+      },
+      {
+        path: '/contact',
+        Component: Contact,
+      },
+      {
+        path: '/support',
+        Component: Support,
       }
     ]
   },

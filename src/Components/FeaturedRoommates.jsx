@@ -11,7 +11,7 @@ const FeaturedPosts = () => {
     useEffect(() => {
         AOS.init({ duration: 600, once: false });
 
-        fetch("https://roomivio-server.vercel.app/listings?limit=8")
+        fetch("https://roomivio-server.vercel.app/listings?limit=12")
             .then((res) => res.json())
             .then((data) => {
                 const availablePosts = data.filter((post) => post.availability === "available");
@@ -27,7 +27,7 @@ const FeaturedPosts = () => {
                     🌟 Featured Roommates Posts
                 </h2>
 
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-6 md:grid-cols-3 lg:grid-cols-4">
                     {posts.map((post) => (
                         <div
                             key={post._id}
